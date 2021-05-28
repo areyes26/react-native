@@ -42,7 +42,10 @@ export default class App extends Component {
         </View>
      </View>
 
-     <View style={{ height:"66.5%", width: "100%",}}></View>
+     <View style={{ height:"66.5%", width: "100%",}}>
+      /*Aca Va lo de las tarjetas */
+
+     </View>
 
      <View style={style.generalBackground,{backgroundColor: "#30444E", height:"11.5%", width: "100%", flexDirection: "row", justifyContent: "space-evenly", borderTopLeftRadius: "25px", borderTopRightRadius: "25px" }}>
        <Button color="#3DD598" title= "Hola" style={{width:"20%"}}></Button>
