@@ -6,6 +6,8 @@ import{
   Button,
   Image,
   StyleSheet,
+  ScrollView,
+  TouchableOpacity,
 
 } from "react-native";
 export default class App extends Component {
@@ -13,45 +15,89 @@ export default class App extends Component {
   render(){
     return (
     <View style={{flex:1, backgroundColor: "#22343C"}}>  
-     <View style={style.generalBackground,{height:"4%", width: "100%",}}></View>
+     <View style={styles.generalBackground,{height:"4%", width: "100%",}}></View>
 
-     <View style={style.generalBackground,{height:"10%",flexDirection:"row", }}>
-        <View style={style.botonMas}>
-          <Button color="#3DD598" title="+" style={style.botonesGeneral}></Button>
+     <View style={styles.generalBackground,{height:"10%",flexDirection:"row", }}>
+        <View style={styles.botonMas}>
+          <Button color="#3DD598" title="+" styles={styles.botonesGeneral}></Button>
         </View>
-        <View style={style.buscador}>
-          <Button color="#3DD598" title="buscador" style={style.botonesGeneral}></Button>
+        <View style={styles.buscador}>
+          <Button color="#3DD598" title="buscador" style={styles.botonesGeneral}></Button>
         </View>
-        <View style={style.filtros}>
-          <Button color="#3DD598" title="F" style={style.botonesGeneral}></Button>
+        <View style={styles.filtros}>
+          <Button color="#3DD598" title="F" style={styles.botonesGeneral}></Button>
         </View>  
      </View>
 
-     <View style={style.generalBackground,{height:"8%",flexDirection:"row", justifyContent:"space-evenly"}}>
-        <View style={style.botonesCategorias}>
-          <Button color="#3DD598" title="All" style={style.botonesGeneral}></Button>
+     <View style={styles.generalBackground,{height:"8%",flexDirection:"row", justifyContent:"space-evenly"}}>
+        <View style={styles.botonesCategorias}>
+          <Button color="#3DD598" title="All" style={styles.botonesGeneral}></Button>
         </View>
-        <View style={style.botonesCategorias}>
-          <Button color="#3DD598" title="Edad" style={style.botonesGeneral}></Button>
+        <View style={styles.botonesCategorias}>
+          <Button color="#3DD598" title="Edad" style={styles.botonesGeneral}></Button>
         </View>
-        <View style={style.botonesCategorias}>
-          <Button color="#3DD598" title="A to Z" style={style.botonesGeneral}></Button>
+        <View style={styles.botonesCategorias}>
+          <Button color="#3DD598" title="A to Z" style={styles.botonesGeneral}></Button>
         </View>
-        <View style={style.botonesCategorias}>
-          <Button color="#3DD598" title="Z to A" style={style.botonesGeneral}></Button>
+        <View style={styles.botonesCategorias}>
+          <Button color="#3DD598" title="Z to A" style={styles.botonesGeneral}></Button>
         </View>
      </View>
 
-     <View style={{ height:"66.5%", width: "100%",}}>
-      /*Aca Va lo de las tarjetas */
+      <View style={{ height:"66.5%", width: "100%",}}>
+     
+       <ScrollView>
+         
 
+         <View style = {{flex:2, flexDirection:'row', }}>
+            <View style = {styles.tarjeta}>
+              <View style={styles.vistaFoto}> 
+               <Image source={require("./src/images/foto.jpeg")} style={styles.foto}></Image>
+             </View>
+             <View style={{flex: 1,justifyContent: "center" } }>
+              <Text style={styles.nombre}> Nombre Apellido</Text>
+              <Text style={styles.email}> ejemplo@gmail.com </Text>
+              <Text style={styles.nacimiento}>Nacimiento: 03/05/2001</Text>
+              </View>
+             <View style={{flex:0.5, }}>
+               <TouchableOpacity style = {styles.delete}> 
+                <Text style={styles.textoDelete}> Delete </Text>                    
+               </TouchableOpacity>
+             </View >
+            </View>
+
+            <View style = {styles.tarjeta}>
+              <View style={styles.vistaFoto}> 
+               <Image source={require("./src/images/foto.jpeg")} style={styles.foto}></Image>
+             </View>
+             <View style={{flex: 1,justifyContent: "center" } }>
+              <Text style={styles.nombre}> Nombre Apellido</Text>
+              <Text style={styles.email}> ejemplo@gmail.com </Text>
+              <Text style={styles.nacimiento}>Nacimiento: 03/05/2001</Text>
+              </View>
+             <View style={{flex:0.5, }}>
+               <TouchableOpacity style = {styles.delete}> 
+                <Text style={styles.textoDelete}> Delete </Text>                    
+               </TouchableOpacity>
+             </View >
+            </View>
+
+
+
+         </View>
+        </ScrollView>
      </View>
 
-     <View style={style.generalBackground,{backgroundColor: "#30444E", height:"11.5%", width: "100%", flexDirection: "row", justifyContent: "space-evenly", borderTopLeftRadius: "25px", borderTopRightRadius: "25px" }}>
-       <Button color="#3DD598" title= "Hola" style={{width:"20%"}}></Button>
-       <Button color="#3DD598" title={<Image style={{width: 66,height: 58}} source={require("./assets/Path.png")}/>} style={{width:"20%"}}></Button>
-       <Button color="#3DD598" title= "Hola" style={{width:"%"}}></Button>
-       
+     <View style = {{flex:1, height:"12%", width:"100%", backgroundColor:"#30444E", borderRadius: "25 25 0 0", boxShadow: "0 1 14 #19282F", flexDirection:"row", justifyContent:"space-evenly", }}>
+        <TouchableOpacity style = {styles.botonTacho}> 
+          <Image source={require("./src/images/botonTacho.png")} style = {styles.iconoMenu}></Image> 
+        </TouchableOpacity>
+        <TouchableOpacity style = {styles.botonHome}> 
+          <Image source={require("./src/images/botonHome.png")} style = {styles.iconoMenu} ></Image>
+        </TouchableOpacity>
+        <TouchableOpacity style = {styles.botonNosotros}> 
+          <Image source={require("./src/images/botonNosotros.png")} style = {styles.iconoMenu2}></Image> 
+        </TouchableOpacity>
      </View>
 
     </View>
@@ -59,7 +105,7 @@ export default class App extends Component {
   }
   };
 
-  const style = StyleSheet.create({
+  const styles = StyleSheet.create({
   botonesCategorias:{
     height:"100%",
     justifyContent:"center",
@@ -87,5 +133,111 @@ export default class App extends Component {
   },
   generalBackground:{
     backgroundColor: "#22343C"
-  }
+  },
+  
+//Franco menu
+
+botonHome:{
+    backgroundColor: "#3DD598",
+    borderRadius: 50,
+    width: 60,
+    height: 60,
+    marginTop: 15,
+    justifyContent: 'center',
+    paddingLeft: 20,
+    marginRight:20,
+    marginLeft:20
+  },
+
+  iconoMenu:{
+    width:20,
+    height:20,
+  },
+
+  botonTacho:{
+    width: 60,
+    height: 60,
+    marginTop: 15,
+    justifyContent: 'center',
+    marginLeft:40
+
+  },
+
+  botonNosotros:{
+    width: 60,
+    height: 60,
+    marginTop: 15,
+    justifyContent: 'center',
+    marginLeft:30
+
+  },
+
+  iconoMenu2:{
+    width:30,
+    height:30,
+    marginTop:5,
+  },
+
+  //Franco Tarjetas
+ 
+
+  flex1:{
+    flex: 1,
+  },
+
+  
+
+  tarjeta:{
+    height: 300,
+    width: 300,
+    flex: 1,
+    flexDirection: 'column',
+    
+  },
+
+  vistaFoto:{
+    marginTop: 15,
+    marginLeft: 30,
+    
+  },
+  
+  foto:{
+    width: 150,
+    height: 150,
+    borderRadius: 20,
+  },
+
+  nombre:{
+    color: "white",
+    fontSize: 20,
+    textAlign:"center",
+   
+  },
+
+  email:{
+    color: "#96A7AF",
+    fontSize: 18,
+    textAlign:"center",
+  },
+  nacimiento:{
+    color: "grey",
+    fontSize: 12,
+    textAlign:"center",
+  },
+
+  delete:{
+    backgroundColor:'#FF575F',
+    width: 90,
+    height: 25,
+    borderRadius:20,
+    marginLeft: 60,
+  
+    
+  },
+  textoDelete:{
+    color:"#FFFFFF",
+    textAlign: 'center',
+    fontSize: 14,
+    marginTop: 5,
+  },
   })
