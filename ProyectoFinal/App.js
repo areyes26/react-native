@@ -103,7 +103,7 @@ export default class App extends Component {
         </ScrollView>
      </View>
 
-     <View style = {{flex:1, height:"12%", width:"100%", backgroundColor:"#30444E", borderRadius: "25 25 0 0", boxShadow: "0 1 14 #19282F", flexDirection:"row", justifyContent:"space-evenly", }}>
+     <View style = {{flex:1, height:"12%", width:"100%", backgroundColor:"#30444E", borderRadius: "25 25 0 0", boxShadow: "0 1 14 #19282F", flexDirection:"row", justifyContent:"space-evenly", alignItems:'center',}}>
         <TouchableOpacity style = {styles.botonTacho}> 
           <Image source={require("./src/images/botonTacho.png")} style = {styles.iconoMenu}></Image> 
         </TouchableOpacity>
@@ -157,11 +157,8 @@ botonHome:{
     borderRadius: 50,
     width: 60,
     height: 60,
-    marginTop: 15,
     justifyContent: 'center',
-    paddingLeft: 20,
-    marginRight:20,
-    marginLeft:20
+    alignItems:'center',
   },
 
   iconoMenu:{
@@ -172,25 +169,24 @@ botonHome:{
   botonTacho:{
     width: 60,
     height: 60,
-    marginTop: 15,
     justifyContent: 'center',
-    marginLeft:40
+    alignItems:'center',
+    
 
   },
 
   botonNosotros:{
     width: 60,
     height: 60,
-    marginTop: 15,
     justifyContent: 'center',
-    marginLeft:30
+    alignItems:'center',
 
   },
 
   iconoMenu2:{
     width:30,
     height:30,
-    marginTop:5,
+    
   },
 
   //Franco Tarjetas
@@ -245,13 +241,12 @@ botonHome:{
     width: 90,
     height: 25,
     borderRadius:20,
-   
+    justifyContent:'center'
   },
 
   textoDelete:{
     color:"#FFFFFF",
     textAlign: 'center',
     fontSize: 14,
-    marginTop: 5,
   },
   })
