@@ -11,7 +11,22 @@ import{
 
 } from "react-native";
 export default class App extends Component {
+  constructor(){
+    super();
+    this.state={
+      users:[],
+    }
+  }
 
+  componentDidMount(){
+    fetch("https://randomuser.me/api?results=20") 
+    .then(response => response.json())
+    .then (results => {
+      this.setState({
+        users: results
+      });
+    })
+  }
   render(){
     return (
     <View style={{flex:1, backgroundColor: "#22343C"}}>  
@@ -59,7 +74,7 @@ export default class App extends Component {
               <Text style={styles.email}> ejemplo@gmail.com </Text>
               <Text style={styles.nacimiento}>Nacimiento: 03/05/2001</Text>
               </View>
-             <View style={{flex:0.5, }}>
+             <View style={{flex:0.5, alignItems: 'center'}}>
                <TouchableOpacity style = {styles.delete}> 
                 <Text style={styles.textoDelete}> Delete </Text>                    
                </TouchableOpacity>
@@ -197,7 +212,7 @@ botonHome:{
 
   vistaFoto:{
     marginTop: 15,
-    marginLeft: 30,
+    alignItems:'center',
     
   },
   
@@ -230,10 +245,9 @@ botonHome:{
     width: 90,
     height: 25,
     borderRadius:20,
-    marginLeft: 60,
-  
-    
+   
   },
+
   textoDelete:{
     color:"#FFFFFF",
     textAlign: 'center',
