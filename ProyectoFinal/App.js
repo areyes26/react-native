@@ -15,7 +15,22 @@ import{
 
 } from "react-native";
 export default class App extends Component {
+  constructor(){
+    super();
+    this.state={
+      users:[],
+    }
+  }
 
+  componentDidMount(){
+    fetch("https://randomuser.me/api?results=20") 
+    .then(response => response.json())
+    .then (results => {
+      this.setState({
+        users: results
+      });
+    })
+  }
   render(){
     return (
     <View style={{flex:1, backgroundColor: "#22343C"}}>  
@@ -63,7 +78,7 @@ export default class App extends Component {
               <Text style={styles.email}> ejemplo@gmail.com </Text>
               <Text style={styles.nacimiento}>Nacimiento: 03/05/2001</Text>
               </View>
-             <View style={{flex:0.5, }}>
+             <View style={{flex:0.5, alignItems: 'center'}}>
                <TouchableOpacity style = {styles.delete}> 
                 <Text style={styles.textoDelete}> Delete </Text>                    
                </TouchableOpacity>
@@ -92,7 +107,7 @@ export default class App extends Component {
         </ScrollView>
      </View>
 
-     <View style = {{flex:1, height:"12%", width:"100%", backgroundColor:"#30444E", borderRadius: "25 25 0 0", boxShadow: "0 1 14 #19282F", flexDirection:"row", justifyContent:"space-evenly", }}>
+     <View style = {{flex:1, height:"12%", width:"100%", backgroundColor:"#30444E", borderRadius: "25 25 0 0", boxShadow: "0 1 14 #19282F", flexDirection:"row", justifyContent:"space-evenly", alignItems:'center',}}>
         <TouchableOpacity style = {styles.botonTacho}> 
           <Image source={require("./src/images/botonTacho.png")} style = {styles.iconoMenu}></Image> 
         </TouchableOpacity>
@@ -146,11 +161,8 @@ botonHome:{
     borderRadius: 50,
     width: 60,
     height: 60,
-    marginTop: 15,
     justifyContent: 'center',
-    paddingLeft: 20,
-    marginRight:20,
-    marginLeft:20
+    alignItems:'center',
   },
 
   iconoMenu:{
@@ -161,25 +173,24 @@ botonHome:{
   botonTacho:{
     width: 60,
     height: 60,
-    marginTop: 15,
     justifyContent: 'center',
-    marginLeft:40
+    alignItems:'center',
+    
 
   },
 
   botonNosotros:{
     width: 60,
     height: 60,
-    marginTop: 15,
     justifyContent: 'center',
-    marginLeft:30
+    alignItems:'center',
 
   },
 
   iconoMenu2:{
     width:30,
     height:30,
-    marginTop:5,
+    
   },
 
   //Franco Tarjetas
@@ -201,7 +212,7 @@ botonHome:{
 
   vistaFoto:{
     marginTop: 15,
-    marginLeft: 30,
+    alignItems:'center',
     
   },
   
@@ -234,14 +245,12 @@ botonHome:{
     width: 90,
     height: 25,
     borderRadius:20,
-    marginLeft: 60,
-  
-    
+    justifyContent:'center'
   },
+
   textoDelete:{
     color:"#FFFFFF",
     textAlign: 'center',
     fontSize: 14,
-    marginTop: 5,
   },
   })
