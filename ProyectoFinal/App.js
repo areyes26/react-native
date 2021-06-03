@@ -1,5 +1,9 @@
 
 import React,{ Component } from 'react';
+import { Screen_Import } from './src/images/Screens/Screen_import'
+import { Screen_ViewImportedCard } from './src/images/Screens/Screen_ViewImportedCard'
+import { Screen_FiatList } from './src/images/Screens/Screen_FlatList'
+
 import{
   Text,
   View,
