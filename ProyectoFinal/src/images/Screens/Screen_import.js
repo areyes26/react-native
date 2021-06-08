@@ -4,8 +4,7 @@ import { getData } from '../api/RandomUsers'
 import {
     View,
     Text,
-    Button,
-    Alert
+    Button
 } from 'react-native';
 
 class Screen_Import extends Component {
@@ -29,9 +28,8 @@ class Screen_Import extends Component {
    async storeData() {
     try{
      const jsonUsers = JSON.stringify(this.state.users);
-     await Asyncstorage.setItem("Users", jsonUsers);
-     console.log("Datos almacenados");
-     Alert.alert("datos almacenados correctamente.")
+     await Asyncstorage.setItem("Users", jsonUsers)
+     console.log("Datos almacenados")
    }catch(e) {
 console.log(e)
    }

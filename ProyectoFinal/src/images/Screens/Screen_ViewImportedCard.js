@@ -6,7 +6,7 @@ import {
     Button
 } from 'react-native';
 
-class  Screen_ViewImportedCard extends Component {
+class Screen_ViewImportedCard extends Component {
     constructor (){
           super();
           this.state = {
@@ -32,7 +32,7 @@ render (){
         <Text key={item.login.uuid}>{item.name.first}</Text>
         )
     return (
-        <View style={{marginTop:100}}>
+        <View>
             <Text>Mostramos los valores </Text>
             {values}
             <Button onPress={this.storeData.bind(this) } title="Recuperar datos"></Button>
