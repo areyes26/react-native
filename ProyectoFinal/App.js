@@ -3,7 +3,7 @@ import React,{ Component } from 'react';
 import { Screen_Import } from './src/Screens/Screen_import'
 import { Screen_ViewImportedCard } from './src/Screens/Screen_ViewImportedCard'
 import { Screen_FlatList } from './src/Screens/Screen_FlatList'
-
+import { Screen_AboutUS } from './src/Screens/Screen_AboutUs'
 import{
   Text,
   View,
@@ -34,7 +34,7 @@ export default class App extends Component {
   }
   render(){
     return (
-   <Screen_FlatList/>
+   <Screen_AboutUS/>
     );
   }
   };
