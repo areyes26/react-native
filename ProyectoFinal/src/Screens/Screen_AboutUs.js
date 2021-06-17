@@ -18,7 +18,7 @@ export  class Screen_AboutUS extends Component {
 
      <View style={style.generalBackground,{height:"8%",flexDirection:"row", width:"100%",alignItems:"center",marginLeft:"9%"}}>
         <View style={{fontSize:"16vw", color:"white"}}>
-          About Us
+          <Text>About Us</Text>
         </View>  
      </View>
 
@@ -126,9 +126,9 @@ export  class Screen_AboutUS extends Component {
     flexDirection:"row",
     justifyContent:"space-evenly",
     backgroundColor:"#30444E",
-    width:"100%",
-    borderRadius:"25px",
-    height:"23%"
+    width:100,
+    borderRadius:25,
+    height:23
   },
   imageUs:{
     flex:1,

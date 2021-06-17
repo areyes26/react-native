@@ -1,5 +1,5 @@
 
-import React,{ Component } from 'react';
+import React,{ Component } from 'react'
 import { Screen_Import } from './src/Screens/Screen_import'
 import { Screen_ViewImportedCard } from './src/Screens/Screen_ViewImportedCard'
 import { Screen_FlatList } from './src/Screens/Screen_FlatList'
@@ -34,7 +34,7 @@ export default class App extends Component {
   }
   render(){
     return (
-   <Screen_AboutUS/>
+   <Screen_FlatList/>
     );
   }
   };

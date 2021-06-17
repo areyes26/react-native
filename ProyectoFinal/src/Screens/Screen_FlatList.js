@@ -9,13 +9,16 @@ import {
     StyleSheet,
     Image,
     TouchableOpacity,
+    ActivityIndicator,
+    Modal,
 } from 'react-native';
 
 export class Screen_FlatList extends Component {
     constructor (){
           super();
           this.state = {
-              users: []
+              users: [],
+              activity: true,
           }
     }
 
@@ -24,9 +27,16 @@ export class Screen_FlatList extends Component {
       getData()
       .then( (usuarios) => { 
        console.log(usuarios);
-       this.setState({users: usuarios});  
+       this.setState({users: usuarios, activity: false});  
     
     })
+    }
+
+    async getDataFromApi(){
+      this.setState({activity:true});
+      let usuarios = await getData();
+      console.log(usuarios);
+      this.setState({users: usuarios, activity: false});
     }
 
 
@@ -48,7 +58,7 @@ export class Screen_FlatList extends Component {
                    </TouchableOpacity>
                 </View >
             </View>
-           
+             
            )}
 
 
@@ -63,12 +73,13 @@ keyExtractor = (item, idx) => idx.toString()
     render (){
 
         return(
-            <View style={styles.container}>
+         <View style={styles.container}>
                <View style={styles.generalBackground,{height:"4%", width: "100%",}}></View>
 
                 <View style={styles.generalBackground,{height:"10%",flexDirection:"row", }}>
                  <View style={styles.botonMas}>
-                     <Button color="#3DD598" title="+" styles={styles.botonesGeneral}></Button>
+                     <Button color="#3DD598" title="+" styles={styles.botonesGeneral}
+                     onPress={() => this.getDataFromApi() }/>
                  </View>
                   <View style={styles.buscador}>
                      <Button color="#3DD598" title="buscador" style={styles.botonesGeneral}></Button>
@@ -94,12 +105,16 @@ keyExtractor = (item, idx) => idx.toString()
              </View>
 
               <View style={{ height:"66.5%", width: "100%",}}>
-                 <FlatList data={this.state.users} 
-                      keyExtractor = { this.keyExtractor }
+                   {this.state.activity 
+                     ?<ActivityIndicator color="red" size={60} />
+                  
+                     :<FlatList 
+                        data={this.state.users} 
+                       keyExtractor = { this.keyExtractor }
                        renderItem={ this.renderItem }
                        numColumns={2}
-                        >
-                 </FlatList>
+                     />
+                   }
               </View>
 
               <View style = {{flex:1, height:"12%", width:"100%", backgroundColor:"#30444E", borderRadius: "25 25 0 0", boxShadow: "0 1 14 #19282F", flexDirection:"row", justifyContent:"space-evenly", alignItems:'center',}}>
@@ -113,7 +128,7 @@ keyExtractor = (item, idx) => idx.toString()
                      <Image source={require("../images/botonNosotros.png")} style = {styles.iconoMenu2}></Image> 
                  </TouchableOpacity>
               </View>
-
+              
          </View>
         )
     }
