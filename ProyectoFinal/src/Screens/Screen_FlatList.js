@@ -11,6 +11,7 @@ import {
     TouchableOpacity,
     ActivityIndicator,
     Modal,
+    
 } from 'react-native';
 
 export class Screen_FlatList extends Component {
@@ -19,6 +20,8 @@ export class Screen_FlatList extends Component {
           this.state = {
               users: [],
               activity: true,
+              showModal: false,
+              selectItme: null,
           }
     }
 
@@ -39,12 +42,18 @@ export class Screen_FlatList extends Component {
       this.setState({users: usuarios, activity: false});
     }
 
+    showModal(item){
+      this.setState({selectItem: item, showModal: true});
+    }
 
 
     renderItem = ({item}) => {   
            return ( 
+            <TouchableOpacity onPress={ () => this.showModal(item)}>
             <View style={styles.card}>
+              
                  <View style={styles.vistaFoto}> 
+                  
                      <Image source={{uri: item.picture.large}}  style={styles.foto}></Image>
                  </View>
                  <View style={{flex: 1, alignItems: "center" } }>
@@ -52,12 +61,15 @@ export class Screen_FlatList extends Component {
                       <Text style={styles.email}> {item.email} </Text>
                       <Text style={styles.nacimiento}>Nacimiento: {item.dob.date}</Text>
                  </View>
+                 
                  <View style={{flex:0.5, alignItems: 'center'}}>
+
                    <TouchableOpacity style = {styles.delete}> 
                    <Text style={styles.textoDelete}> Delete </Text>                    
                    </TouchableOpacity>
                 </View >
             </View>
+            </TouchableOpacity> 
              
            )}
 
@@ -129,6 +141,56 @@ keyExtractor = (item, idx) => idx.toString()
                  </TouchableOpacity>
               </View>
               
+              <Modal visible={this.state.showModal} animationType='slide' transparent={true}>
+                <View style={styles.modalContainer}>
+                  <View style={styles.modal}>
+                  { this.state.selectItem  &&
+                  
+                  <>
+                  <View style={styles.modalCancel}>
+                    <Text onPress={() => this.setState({showModal:false})} style={styles.modalCancelTexto}>
+                        X
+                    </Text>
+                  </View> 
+                  <View style={styles.modalCard}>
+              
+                    <View style={styles.modalVistaFoto}> 
+               
+                  <Image source={{uri: this.state.selectItem.picture.large}}  style={styles.modalFoto}></Image>
+                  </View>
+                   <View style={{flex: 1, alignItems: "center" } }>
+                   <Text style={styles.modalNombre}>{this.state.selectItem.name.first} {this.state.selectItem.name.last}</Text>
+                   <View style={styles.modalMasInfo}>
+                   <Text style={styles.modalMasTexto}>Email: {this.state.selectItem.email} </Text>
+                   <Text style={styles.modalMasTexto}>Nacimiento: {this.state.selectItem.dob.date}</Text>
+                    
+                   <Text style={styles.modalMasTexto}>País: {this.state.selectItem.location.country}</Text>
+                   <Text style={styles.modalMasTexto}>Ciudad/Estado: {this.state.selectItem.location.city} - {this.state.selectItem.location.state}</Text>
+                   <Text style={styles.modalMasTexto}>Dirección: {this.state.selectItem.location.street.name} {this.state.selectItem.location.street.number}</Text>
+                   <Text style={styles.modalMasTexto}>Codigo postal: {this.state.selectItem.location.postcode}</Text>
+                   <Text style={styles.modalMasTexto}>Fecha de registro: {this.state.selectItem.registered.date}</Text>
+                   <Text style={styles.modalMasTexto}>Telefono: {this.state.selectItem.phone}</Text>
+
+                   </View>
+                  </View>
+              
+                 <View style={styles.modalBotones}>
+
+                  <TouchableOpacity style = {styles.modalDelete}> 
+                  <Text style={styles.modalTextoDelete}> Borrar </Text>                    
+                  </TouchableOpacity>
+                  <TouchableOpacity style = {styles.modalEdit}> 
+                  <Text style={styles.modalTextoDelete}> Editar </Text>                    
+                  </TouchableOpacity>
+                  </View >
+
+                 </View>
+                  
+                  </>
+                   }
+                   </View>
+                </View>
+              </Modal>
          </View>
         )
     }
@@ -272,6 +334,131 @@ botonHome:{
     width:30,
     height:30,
     
+  },
+
+  //modal
+
+  modalContainer:{
+    flex:1,
+    justifyContent:'flex-end',
+    alignItems:'center',
+  
+
+  },
+
+  modal:{
+    height:'80%',
+    width:'100%',
+    backgroundColor:'#2d4854',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius:20,
+    borderTopLeftRadius:20,
+    borderTopRightRadius:20,
+ 
+  },
+  
+  modalCancel:{
+    width:30,
+    height:30,
+    borderRadius:100,
+    backgroundColor:'#FF575F',
+    alignItems:'center',
+    marginTop: 10,
+    justifyContent:'center',
+    marginLeft: 320,
+
+
+  },
+
+  modalCancelTexto:{
+    color: 'black',
+    fontWeight:'bold',
+    fontSize:20,
+    
+    
+  },
+
+  // Diseño MODAL
+  modalCard:{
+    
+    width: "100%",
+     flexDirection: 'column',
+    flex:1,
+    
+    
+  },
+
+  modalNombre:{
+    color: "white",
+    fontSize: 30,
+    //textAlign:"center", 
+    marginTop:20,
+    marginBottom:20,
+   
+  },
+  
+  modalMasInfo:{
+  
+  },
+
+  modalMasTexto:{
+    color:'#e3e3e3',
+    fontSize: 18,
+    marginTop:10,
+  },
+  
+
+  modalVistaFoto:{
+
+    alignItems:'center',
+    
+  },
+  
+  modalFoto:{
+    width: 220,
+    height:220,
+    borderRadius: 20,
+  },
+
+  modalBotones:{
+    alignItems: 'flex-end',
+    flex:1,
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+    marginBottom: 30,
+    
+  },
+
+  modalDelete:{
+    backgroundColor:'#FF575F',
+    width: 130,
+    height: 60,
+    borderRadius:20,
+    justifyContent:'center',
+
+  },
+
+  modalTextoDelete:{
+    color:"#FFFFFF",
+    textAlign: 'center',
+    fontSize: 20,
+    fontWeight:'700'
+  },
+
+  modalEdit:{
+    backgroundColor:'#3DD598',
+    width: 130,
+    height: 60,
+    borderRadius:20,
+    justifyContent:'center',
+  },
+
+  modalTextoEdit:{
+    color:"#FFFFFF",
+    textAlign: 'center',
+    fontSize: 20,
+    fontWeight:'700'
   },
 
 
