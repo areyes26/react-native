@@ -22,7 +22,7 @@ class Screen_ViewImportedCard extends Component {
        }catch(e) {
     console.log(e)
        }
-       }
+       } 
 
 
 render (){
