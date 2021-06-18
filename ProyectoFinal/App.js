@@ -1,5 +1,6 @@
-
-import React,{ Component } from 'react'
+import 'react-native-gesture-handler';
+import React,{ Component } from 'react';
+import { NavigationContainer } from '@react-navigation/native'
 import { Screen_Import } from './src/Screens/Screen_import'
 import { Screen_ViewImportedCard } from './src/Screens/Screen_ViewImportedCard'
 import { Screen_FlatList } from './src/Screens/Screen_FlatList'
