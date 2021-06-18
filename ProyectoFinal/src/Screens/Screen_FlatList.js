@@ -65,7 +65,7 @@ export class Screen_FlatList extends Component {
                  <View style={{flex:0.5, alignItems: 'center'}}>
 
                    <TouchableOpacity style = {styles.delete}> 
-                   <Text style={styles.textoDelete}> Delete </Text>                    
+                   <Text style={styles.textoDelete}> Borrar </Text>                    
                    </TouchableOpacity>
                 </View >
             </View>
@@ -342,7 +342,7 @@ botonHome:{
     flex:1,
     justifyContent:'flex-end',
     alignItems:'center',
-  
+ 
 
   },
 
@@ -394,7 +394,7 @@ botonHome:{
     fontSize: 30,
     //textAlign:"center", 
     marginTop:20,
-    marginBottom:20,
+    marginBottom:15,
    
   },
   
@@ -416,8 +416,8 @@ botonHome:{
   },
   
   modalFoto:{
-    width: 220,
-    height:220,
+    width: 235,
+    height:235,
     borderRadius: 20,
   },
 
