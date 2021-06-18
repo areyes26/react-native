@@ -20,7 +20,7 @@ class Screen_Import extends Component {
         getData()
       .then( (usuarios) => { 
        console.log(usuarios);
-            this.setState({users: usuarios})
+            this.setState({users: usuarios, })
         })
     }
 
