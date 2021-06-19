@@ -11,6 +11,8 @@ import {
     TouchableOpacity,
     ActivityIndicator,
     Modal,
+    TextInput,
+    ScrollView,
     
 } from 'react-native';
 
@@ -22,6 +24,8 @@ export class Screen_FlatList extends Component {
               activity: true,
               showModal: false,
               selectItme: null,
+              textHandler: '',
+              texto: '',
           }
     }
 
@@ -46,6 +50,15 @@ export class Screen_FlatList extends Component {
       this.setState({selectItem: item, showModal: true});
     }
 
+    borrarTarjeta (idTarjeta){
+      let resultados = this.state.users.filter((item)=>{
+        return item.login.uuid !== idTarjeta;
+      })
+      this.setState({users:resultados})
+      // console.log("Borramos la tarjeta con el ID " + idTarjeta);
+      
+      }
+
 
     renderItem = ({item}) => {   
            return ( 
@@ -64,8 +77,8 @@ export class Screen_FlatList extends Component {
                  
                  <View style={{flex:0.5, alignItems: 'center'}}>
 
-                   <TouchableOpacity style = {styles.delete}> 
-                   <Text style={styles.textoDelete}> Borrar </Text>                    
+                   <TouchableOpacity style = {styles.delete} onPress={() => this.borrarTarjeta(item.login.uuid)}> 
+                   <Text style={styles.textoDelete} > Borrar </Text>                    
                    </TouchableOpacity>
                 </View >
             </View>
@@ -170,17 +183,28 @@ keyExtractor = (item, idx) => idx.toString()
                    <Text style={styles.modalMasTexto}>Codigo postal: {this.state.selectItem.location.postcode}</Text>
                    <Text style={styles.modalMasTexto}>Fecha de registro: {this.state.selectItem.registered.date}</Text>
                    <Text style={styles.modalMasTexto}>Telefono: {this.state.selectItem.phone}</Text>
+                   <Text style={styles.modalMasTexto}>Celular: {this.state.selectItem.cell}</Text>
 
+                   <View style={{height:100}}>
+                   <ScrollView style={{height:100, width:'90%'}}>
+                   <Text style={styles.modalMasTextoComentario}>Coment: {this.state.texto}  </Text>
+                  </ScrollView>
+                  </View>
                    </View>
                   </View>
               
                  <View style={styles.modalBotones}>
 
-                  <TouchableOpacity style = {styles.modalDelete}> 
-                  <Text style={styles.modalTextoDelete}> Borrar </Text>                    
+                  <View>
+                  <TextInput style={styles.modalInput} onChangeText={text => this.setState({textHandler: text})}></TextInput>
+                  </View>
+                  <View>
+                  <TouchableOpacity style = {styles.modalEdit} onPress={() => this.setState({texto: this.state.textHandler})}> 
+                  <Image source={require("../images/enviar.png")}></Image>                                   
                   </TouchableOpacity>
-                  <TouchableOpacity style = {styles.modalEdit}> 
-                  <Text style={styles.modalTextoDelete}> Editar </Text>                    
+                  </View>
+                  <TouchableOpacity style = {styles.modalDelete} onPress={() => this.borrarTarjeta(this.state.selectItem.login.uuid)}> 
+                  <Image source={require("../images/tachoblanco.png")}  ></Image>                 
                   </TouchableOpacity>
                   </View >
 
@@ -405,7 +429,7 @@ botonHome:{
   modalMasTexto:{
     color:'#e3e3e3',
     fontSize: 18,
-    marginTop:10,
+    marginTop:5,
   },
   
 
@@ -423,19 +447,23 @@ botonHome:{
 
   modalBotones:{
     alignItems: 'flex-end',
+    justifyContent:'space-around',
     flex:1,
     flexDirection: 'row',
-    justifyContent: 'space-evenly',
     marginBottom: 30,
+   
+   
     
   },
 
   modalDelete:{
     backgroundColor:'#FF575F',
-    width: 130,
-    height: 60,
+    width: 60,
+    height: 40,
     borderRadius:20,
     justifyContent:'center',
+    alignContent:'center',
+    alignItems:'center'
 
   },
 
@@ -448,10 +476,13 @@ botonHome:{
 
   modalEdit:{
     backgroundColor:'#3DD598',
-    width: 130,
-    height: 60,
+    width: 60,
+    height: 40,
     borderRadius:20,
     justifyContent:'center',
+    alignContent:'center',
+    alignItems:'center'
+
   },
 
   modalTextoEdit:{
@@ -461,6 +492,26 @@ botonHome:{
     fontWeight:'700'
   },
 
+  modalInput:{
+    borderWidth:1,
+    backgroundColor: '#537d8f',
+    borderColor:'#446675',
+    borderRadius:22,
+    width: 250,
+    height: 40,
+    borderRadius:20,
+    justifyContent:'center',
+    alignContent:'center',
+    alignItems:'center',
+    marginLeft:8,
+  },
+
+  modalMasTextoComentario:{
+    color:'#e3e3e3',
+    fontSize: 18,
+    marginTop:15,
+    fontWeight:'bold',
+  },
 
 
 })
