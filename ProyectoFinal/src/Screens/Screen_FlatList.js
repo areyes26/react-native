@@ -59,6 +59,8 @@ export class Screen_FlatList extends Component {
       
       }
 
+     
+
 
     renderItem = ({item}) => {   
            return ( 
@@ -77,7 +79,8 @@ export class Screen_FlatList extends Component {
                  
                  <View style={{flex:0.5, alignItems: 'center'}}>
 
-                   <TouchableOpacity style = {styles.delete} onPress={() => this.borrarTarjeta(item.login.uuid)}> 
+                   <TouchableOpacity style = {styles.delete} 
+                   onPress={() => this.borrarTarjeta(item.login.uuid)}> 
                    <Text style={styles.textoDelete} > Borrar </Text>                    
                    </TouchableOpacity>
                 </View >
@@ -107,9 +110,16 @@ keyExtractor = (item, idx) => idx.toString()
                      onPress={() => this.getDataFromApi() }/>
                  </View>
                   <View style={styles.buscador}>
-                     <Button color="#3DD598" title="buscador" style={styles.botonesGeneral}></Button>
+                  <TextInput style={styles.busacdorInput}></TextInput>
+                  </View>
+                  <View style = {styles.viewLupa}>
+                  <TouchableOpacity style = {styles.lupa} >
+                  <Image source={require("../images/enviar.png")} style = {styles.imagenLupa}></Image>                                   
+                  </TouchableOpacity>
                   </View>
                  <View style={styles.filtros}>
+                   
+                 
                      <Button color="#3DD598" title="F" style={styles.botonesGeneral}></Button>
                  </View>  
              </View>
@@ -198,7 +208,7 @@ keyExtractor = (item, idx) => idx.toString()
                   <View>
                   <TextInput style={styles.modalInput} onChangeText={text => this.setState({textHandler: text})}></TextInput>
                   </View>
-                  <View>
+                  <View >
                   <TouchableOpacity style = {styles.modalEdit} onPress={() => this.setState({texto: this.state.textHandler})}> 
                   <Image source={require("../images/enviar.png")}></Image>                                   
                   </TouchableOpacity>
@@ -242,12 +252,7 @@ const styles = StyleSheet.create({
         height:"100%",
         justifyContent:"center"
       },
-      buscador:{
-        width:"49%",
-        marginLeft:"11.3%",
-        height:"100%",
-        justifyContent:"center"
-      },
+     
       filtros:{
         width:"13%",
         marginLeft:"4%",
@@ -318,6 +323,55 @@ const styles = StyleSheet.create({
         color:"#FFFFFF",
         textAlign: 'center',
         fontSize: 14,
+      },
+
+      buscador:{
+       
+        justifyContent:"center",
+        alignContent:'center',
+       alignItems:'center',
+
+      },
+
+      busacdorInput:{
+        borderWidth:1,
+        backgroundColor: '#537d8f',
+         borderColor:'#446675',
+         borderRadius:22,
+        width: 220,
+        height: 25,
+       borderRadius:20,
+       justifyContent:'center',
+      alignContent:'center',
+       alignItems:'center',
+        marginLeft:10,
+        marginRight:10,
+      },
+
+      lupa:{
+        backgroundColor:'#3DD598',
+        width: 35,
+       height: 25,
+        borderRadius:20,
+        justifyContent:'center',
+        alignContent:'center',
+        alignItems:'center',
+        
+
+      },
+
+      viewLupa:{
+        justifyContent:'center',
+        alignContent:'center',
+        alignItems:'center'
+      },
+
+      imagenLupa:{
+          height: 15,
+          width: 15,
+          justifyContent:'center',
+        alignContent:'center',
+        alignItems:'center'
       },
 
     
@@ -467,12 +521,7 @@ botonHome:{
 
   },
 
-  modalTextoDelete:{
-    color:"#FFFFFF",
-    textAlign: 'center',
-    fontSize: 20,
-    fontWeight:'700'
-  },
+  
 
   modalEdit:{
     backgroundColor:'#3DD598',
@@ -485,12 +534,7 @@ botonHome:{
 
   },
 
-  modalTextoEdit:{
-    color:"#FFFFFF",
-    textAlign: 'center',
-    fontSize: 20,
-    fontWeight:'700'
-  },
+  
 
   modalInput:{
     borderWidth:1,
