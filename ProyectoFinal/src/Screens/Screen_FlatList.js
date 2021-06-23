@@ -15,8 +15,12 @@ import {
     Modal,
     TextInput,
     ScrollView,
+    Animated,
+    Easing
+  
     
 } from 'react-native';
+
 const window = Dimensions.get("window");
 const screen = Dimensions.get("screen");
 export class Screen_FlatList extends Component {
@@ -29,6 +33,7 @@ export class Screen_FlatList extends Component {
               selectItme: null,
               textHandler: '',
               texto: '',
+              toValue: 1.4,
           }
     }
 
@@ -67,7 +72,7 @@ export class Screen_FlatList extends Component {
 
     renderItem = ({item}) => {   
            return ( 
-            <TouchableOpacity onPress={ () => this.showModal(item)} style={{justifyContent: "space-evenly", flexDirection: "row"}}>
+            <TouchableOpacity onPress={() => this.showModal(item)} style={{justifyContent: "space-evenly", flexDirection: "row"}}>
             <View style={styles.card}>
               
                  <View style={styles.vistaFoto}> 
@@ -101,6 +106,17 @@ export class Screen_FlatList extends Component {
 keyExtractor = (item, idx) => idx.toString()
 
 
+position = new Animated.Value(1);
+
+topDown = () => {
+  Animated.timing(this.position, {
+    toValue: this.state.toValue,
+    duration: 1000,
+    easing: Easing.elastic(4),
+    useNativeDriver: false
+  } ).start();
+  this.setState({toValue: this.state.toValue==1? 1.4 : 1})
+}
 
 
 
@@ -182,11 +198,16 @@ keyExtractor = (item, idx) => idx.toString()
                     </Text>
                   </View> 
                   <View style={styles.modalCard}>
-              
-                    <View style={styles.modalVistaFoto}> 
+                  <TouchableOpacity  style={{}}  onPress={this.topDown}>
+                    <Animated.View style={{ alignItems:'center', transform: [{scale: this.position}]}}> 
                
                   <Image source={{uri: this.state.selectItem.picture.large}}  style={styles.modalFoto}></Image>
-                  </View>
+                 
+                  </Animated.View>
+                  
+                 </TouchableOpacity>
+
+
                    <View style={{flex: 1, alignItems: "center" } }>
                    <Text style={styles.modalNombre}>{this.state.selectItem.name.first} {this.state.selectItem.name.last}</Text>
                    <View style={styles.modalMasInfo}>
@@ -496,8 +517,9 @@ botonHome:{
   },
   
   modalFoto:{
-    width: 235,
-    height:235,
+    margin: 30,
+    width: 180,
+    height:180,
     borderRadius: 20,
   },
 
