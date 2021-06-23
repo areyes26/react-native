@@ -42,10 +42,12 @@ render (){
         )
     return (
     <View style={{flex:1, backgroundColor: "#22343C"}}> 
+        <View style={{height:"89%"}}>
         <Text >Mostramos los valores </Text>
             {values}
             <Button color="#3DD598" onPress={this.storeData.bind(this) } title="Recuperar datos"></Button>
             <Button color="#3DD598" onPress={ () => this.setState({importedusers: []}) } title="Borrar datos"></Button>
+        </View>
 
         <View style = {{height:"11%", width:"100%", backgroundColor:"#30444E", borderRadius: "25 25 0 0", boxShadow: "0 1 14 #19282F", flexDirection:"row", justifyContent:"space-evenly", alignItems:"center"}}>
             {/* <TouchableOpacity onPress={ () => this.props.navigation.navigate("Papelera")} style = {style.botonTacho}> 

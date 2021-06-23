@@ -13,13 +13,13 @@ export  class Screen_AboutUS extends Component {
   render(){
     return (
     <View style={{flex:1, backgroundColor: "#22343C"}}>  
-     {/* <View style={style.generalBackground,{height:"5%", width: "100%"}}></View>
+     <View style={style.generalBackground,{height:"5%", width: "100%"}}></View>
 
      <View style={style.generalBackground,{height:"8%",flexDirection:"row", width:"100%",alignItems:"center",marginLeft:"9%"}}>
         <View style={{fontSize:"16vw", color:"white"}}>
           About Us
         </View>  
-     </View> */}
+     </View>
 
 
      <View style={style.conteinerUs}>
@@ -114,7 +114,7 @@ export  class Screen_AboutUS extends Component {
   //Contenido About Us
 
   conteinerUs:{
-    height:"89%",
+    height:"76%",
     width:"82%",
     display:"flex",
     flexWrap:"wrap",

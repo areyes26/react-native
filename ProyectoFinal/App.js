@@ -42,8 +42,8 @@ export default class App extends Component {
   render(){
     return (
       <NavigationContainer>
-        <Stack.Navigator>
-          <Stack.Screen name="Home" component={Screen_FlatList} />
+        <Stack.Navigator screenOptions={{headerShown: false}}>
+          <Stack.Screen name="Home" component={Screen_FlatList}  />
           <Stack.Screen name="About Us" component={Screen_AboutUS} />
           <Stack.Screen name="View Imported Card" component={Screen_ViewImportedCard} />
           <Stack.Screen name="Import" component={Screen_Import} />

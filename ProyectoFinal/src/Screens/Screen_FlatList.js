@@ -142,7 +142,7 @@ keyExtractor = (item, idx) => idx.toString()
                  </View>
              </View>
 
-              <View style={{ height:"66vh", width: "100vw",justifyContent:"space-evenly"}}>
+              <View style={{ height:"73vh", width: "100vw",justifyContent:"space-evenly"}}>
                    {this.state.activity 
                      ?<ActivityIndicator color="red" size={60} />
                   
@@ -155,7 +155,7 @@ keyExtractor = (item, idx) => idx.toString()
                    }
               </View>
 
-              <View style = {{flex:1, height:"12vh", width:"100vw", backgroundColor:"#30444E", borderRadius: "25 25 0 0", boxShadow: "0 1 14 #19282F", flexDirection:"row", justifyContent:"space-evenly", alignItems:'center',}}>
+              <View style = {{flex:1, height:"11%", width:"100vw", backgroundColor:"#30444E", borderRadius: "25 25 0 0", boxShadow: "0 1 14 #19282F", flexDirection:"row", justifyContent:"space-evenly", alignItems:'center',}}>
                   <TouchableOpacity onPress={ () => this.props.navigation.navigate("Papelera")} style = {styles.botonTacho}> 
                      <Image source={require("../images/botonTacho.png")} style = {styles.iconoMenu}></Image> 
                  </TouchableOpacity>
