@@ -17,10 +17,11 @@ export  class Screen_AboutUS extends Component {
      <View style={style.generalBackground,{height:"5%", width: "100%"}}></View>
 
      <View style={style.generalBackground,{height:"8%",flexDirection:"row", width:"100%",alignItems:"center",marginLeft:"9%"}}>
-        <View style={{fontSize:vw(16), color:"white"}}>
-          About Us
+        <View style={{fontSize:vh(30), color:"white"}}>
+         <Text> About Us </Text>
         </View>  
      </View>
+     
 
 
      <View style={style.conteinerUs}>
@@ -59,7 +60,7 @@ export  class Screen_AboutUS extends Component {
               <Image source={require("../images/puntoOnline.png")} style = {{width:vw(2), height:vw(2)}} ></Image> 
               <Text style={{color:"#96A7AF", fontSize:vw(3.4)}}>  fmendelsohn@udesa.edu.ar</Text>
             </View>
-              <Text style={{color:"#96A7AF", fontSize:vw(4)}}>CEO</Text>
+              <Text style={{color:"#96A7AF", fontSize:vw(4)}}>Producto Manager</Text>
             </View>
           </View>
 
@@ -89,15 +90,10 @@ export  class Screen_AboutUS extends Component {
      </View>
 
      <View style = {{height:"11%", width:"100%", backgroundColor:"#30444E", borderRadius: "25 25 0 0", boxShadow: "0 1 14 #19282F", flexDirection:"row", justifyContent:"space-evenly", alignItems:"center"}}>
-        {/* <TouchableOpacity style = {style.botonTacho}> 
-          <Image source={require("../images/botonTacho.png")} style = {style.iconoMenu}></Image> 
-        </TouchableOpacity> */}
+        
         <TouchableOpacity onPress={ () => this.props.navigation.navigate("Home")} style = {style.botonHome}> 
           <Image source={require("../images/botonHome.png")} style = {style.iconoMenu} ></Image>
         </TouchableOpacity>
-        {/* <TouchableOpacity style = {style.botonNosotros}> 
-          <Image source={require("../images/botonNosotros.png")} style = {style.iconoMenu2}></Image> 
-        </TouchableOpacity> */}
      </View>
        
        

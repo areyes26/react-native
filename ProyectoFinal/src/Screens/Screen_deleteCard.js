@@ -42,7 +42,10 @@ render (){
         )
     return (
     <View style={{flex:1, backgroundColor: "#22343C"}}> 
-        <View style={{height:"89%"}}>
+
+    <View style={{height:"5%", width: "100%",}}></View>
+
+        <View style={{height:"84%"}}>
         <Text >Mostramos los valores </Text>
             {values}
             <Button color="#3DD598" onPress={this.storeData.bind(this) } title="Recuperar datos"></Button>
