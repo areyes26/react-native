@@ -1,4 +1,3 @@
-
 import React,{ Component } from 'react';
 import{
   Text,
@@ -14,13 +13,13 @@ export  class Screen_AboutUS extends Component {
   render(){
     return (
     <View style={{flex:1, backgroundColor: "#22343C"}}>  
-     <View style={style.generalBackground,{height:"5%", width: "100%"}}></View>
+     {/* <View style={style.generalBackground,{height:"5%", width: "100%"}}></View>
 
      <View style={style.generalBackground,{height:"8%",flexDirection:"row", width:"100%",alignItems:"center",marginLeft:"9%"}}>
         <View style={{fontSize:"16vw", color:"white"}}>
-          <Text>About Us</Text>
+          About Us
         </View>  
-     </View>
+     </View> */}
 
 
      <View style={style.conteinerUs}>
@@ -88,7 +87,7 @@ export  class Screen_AboutUS extends Component {
 
      </View>
 
-     <View style = {{flex:1, height:"12%", width:"100%", backgroundColor:"#30444E", borderRadius: "25 25 0 0", boxShadow: "0 1 14 #19282F", flexDirection:"row", justifyContent:"space-evenly", }}>
+     <View style = {{height:"11%", width:"100%", backgroundColor:"#30444E", borderRadius: "25 25 0 0", boxShadow: "0 1 14 #19282F", flexDirection:"row", justifyContent:"space-evenly", alignItems:"center"}}>
         <TouchableOpacity style = {style.botonTacho}> 
           <Image source={require("../images/botonTacho.png")} style = {style.iconoMenu}></Image> 
         </TouchableOpacity>
@@ -115,7 +114,7 @@ export  class Screen_AboutUS extends Component {
   //Contenido About Us
 
   conteinerUs:{
-    height:"75%",
+    height:"89%",
     width:"82%",
     display:"flex",
     flexWrap:"wrap",
@@ -126,9 +125,9 @@ export  class Screen_AboutUS extends Component {
     flexDirection:"row",
     justifyContent:"space-evenly",
     backgroundColor:"#30444E",
-    width:100,
+    width:"100%",
     borderRadius:25,
-    height:23
+    height:"23%"
   },
   imageUs:{
     flex:1,
@@ -147,43 +146,39 @@ export  class Screen_AboutUS extends Component {
   //Franco menu
 
   botonHome:{
-      backgroundColor: "#3DD598",
-      borderRadius: 50,
-      width: 60,
-      height: 60,
-      marginTop: 15,
-      justifyContent: 'center',
-      paddingLeft: 20,
-      marginRight:20,
-      marginLeft:20
-    },
-  
-    iconoMenu:{
-      width:20,
-      height:20,
-    },
-  
-    botonTacho:{
-      width: 60,
-      height: 60,
-      marginTop: 15,
-      justifyContent: 'center',
-      marginLeft:40
-  
-    },
-  
-    botonNosotros:{
-      width: 60,
-      height: 60,
-      marginTop: 15,
-      justifyContent: 'center',
-      marginLeft:30
-  
-    },
-  
-    iconoMenu2:{
-      width:30,
-      height:30,
-      marginTop:5,
-    },
+    backgroundColor: "#3DD598",
+    borderRadius: 50,
+    width: 60,
+    height: 60,
+    justifyContent: 'center',
+    alignItems:'center',
+  },
+
+  iconoMenu:{
+    width:20,
+    height:20,
+  },
+
+  botonTacho:{
+    width: 60,
+    height: 60,
+    justifyContent: 'center',
+    alignItems:'center',
+    
+
+  },
+
+  botonNosotros:{
+    width: 60,
+    height: 60,
+    justifyContent: 'center',
+    alignItems:'center',
+
+  },
+
+  iconoMenu2:{
+    width:30,
+    height:30,
+    
+  },
   })
