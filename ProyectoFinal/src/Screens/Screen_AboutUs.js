@@ -14,11 +14,11 @@ export  class Screen_AboutUS extends Component {
   render(){
     return (
     <View style={{flex:1, backgroundColor: "#22343C"}}>  
-     <View style={style.generalBackground,{height:"5%", width: "100%"}}></View>
+     <View style={style.generalBackground,{height:"7%", width: "100%"}}></View>
 
      <View style={style.generalBackground,{height:"8%",flexDirection:"row", width:"100%",alignItems:"center",marginLeft:"9%"}}>
-        <View style={{fontSize:vh(30), color:"white"}}>
-         <Text> About Us </Text>
+        <View >
+         <Text style={{fontSize:vw(16), color:"white"}}>About Us</Text>
         </View>  
      </View>
      
@@ -111,7 +111,7 @@ export  class Screen_AboutUS extends Component {
   //Contenido About Us
 
   conteinerUs:{
-    height:"76%",
+    height:"74%",
     width:"82%",
     display:"flex",
     flexWrap:"wrap",
