@@ -71,14 +71,15 @@ export class Screen_FlatList extends Component {
                   
                      <Image source={{uri: item.picture.large}}  style={styles.foto}></Image>
                  </View>
-                 <View style={{height:"10vw",width:"100%",fontSize:"100%"} }>
+                 <View style={{height:"10vw",width:"100%",fontSize:"100%",justifyContent:"space-around"} }>
                       <Text style={styles.nombre}>{item.name.first} {item.name.last}</Text>
                  </View>
                  <View style={{height:"7vw",width:"100%",fontSize:"100%"} }>
                       <Text style={styles.email}>{item.email}</Text>
                  </View>
                  <View style={{height:"7vw",width:"100%",fontSize:"100%"} }>
-                      <Text style={styles.nacimiento}>Nacimiento: {item.dob.date}</Text>
+                      <Text style={{color:"grey", fontSize:"3.5vw", textAlign:"center"}}>Fecha de Nacimiento</Text>
+                      <Text style={styles.nacimiento}>{item.dob.date}</Text>
                  </View>
                  
                  <View style={{alignItems: 'center',height:"10vw", marginTop:"1vw"}}>
@@ -114,7 +115,7 @@ keyExtractor = (item, idx) => idx.toString()
                      onPress={() => this.getDataFromApi() }/>
                  </View>
                   <View style={styles.buscador}>
-                  <TextInput style={styles.busacdorInput}></TextInput>
+                  <TextInput style={styles.buscadorInput}></TextInput>
                   </View>
                   <View style = {styles.viewLupa}>
                   <TouchableOpacity style = {styles.lupa} >
@@ -155,7 +156,7 @@ keyExtractor = (item, idx) => idx.toString()
               </View>
 
               <View style = {{flex:1, height:"12vh", width:"100vw", backgroundColor:"#30444E", borderRadius: "25 25 0 0", boxShadow: "0 1 14 #19282F", flexDirection:"row", justifyContent:"space-evenly", alignItems:'center',}}>
-                  <TouchableOpacity style = {styles.botonTacho}> 
+                  <TouchableOpacity onPress={ () => this.props.navigation.navigate("Papelera")} style = {styles.botonTacho}> 
                      <Image source={require("../images/botonTacho.png")} style = {styles.iconoMenu}></Image> 
                  </TouchableOpacity>
                  <TouchableOpacity style = {styles.botonHome}> 
@@ -279,20 +280,24 @@ const styles = StyleSheet.create({
         color: "white",
         textAlign:"center", 
         width:"100%",
+        justifyContent:"space-around",
+        fontSize:"4vw"
       },
 
       email:{
         color: "#96A7AF",
         textAlign:"center",
         width:"100%",
-        height:"100%"
+        height:"100%",
+        fontSize:"3vw"
       },
       nacimiento:{
         color: "grey",
         textAlign:"center",
         width:"100%",
-        
-        
+        height:"50%",
+        fontSize:"2.5vw",
+        fontWeight:800
       },
       vistaFoto:{
         marginTop: "1vh",
@@ -318,7 +323,7 @@ const styles = StyleSheet.create({
       textoDelete:{
         color:"#FFFFFF",
         textAlign: 'center',
-        fontSize: 14,
+        fontSize: "3vw",
       },
 
       buscador:{
@@ -329,7 +334,7 @@ const styles = StyleSheet.create({
 
       },
 
-      busacdorInput:{
+      buscadorInput:{
         borderWidth:1,
         backgroundColor: '#537d8f',
          borderColor:'#446675',

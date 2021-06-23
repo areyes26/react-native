@@ -88,15 +88,15 @@ export  class Screen_AboutUS extends Component {
      </View>
 
      <View style = {{height:"11%", width:"100%", backgroundColor:"#30444E", borderRadius: "25 25 0 0", boxShadow: "0 1 14 #19282F", flexDirection:"row", justifyContent:"space-evenly", alignItems:"center"}}>
-        <TouchableOpacity style = {style.botonTacho}> 
+        {/* <TouchableOpacity style = {style.botonTacho}> 
           <Image source={require("../images/botonTacho.png")} style = {style.iconoMenu}></Image> 
-        </TouchableOpacity>
-        <TouchableOpacity style = {style.botonHome}> 
+        </TouchableOpacity> */}
+        <TouchableOpacity onPress={ () => this.props.navigation.navigate("Home")} style = {style.botonHome}> 
           <Image source={require("../images/botonHome.png")} style = {style.iconoMenu} ></Image>
         </TouchableOpacity>
-        <TouchableOpacity style = {style.botonNosotros}> 
+        {/* <TouchableOpacity style = {style.botonNosotros}> 
           <Image source={require("../images/botonNosotros.png")} style = {style.iconoMenu2}></Image> 
-        </TouchableOpacity>
+        </TouchableOpacity> */}
      </View>
        
        
