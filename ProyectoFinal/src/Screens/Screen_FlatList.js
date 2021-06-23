@@ -102,9 +102,9 @@ keyExtractor = (item, idx) => idx.toString()
 
         return(
          <View style={styles.container}>
-               <View style={styles.generalBackground,{height:"4%", width: "100%",}}></View>
+               {/* <View style={styles.generalBackground,{height:"1%", width: "100%",}}></View> */}
 
-                <View style={styles.generalBackground,{height:"10%",flexDirection:"row", }}>
+              <View style={styles.generalBackground,{flexDirection:"row",height:"8vh",width:"100vw", display:"flex", flexWrap:"wrap", justifyContent:"space-evenly"}}>
                  <View style={styles.botonMas}>
                      <Button color="#3DD598" title="+" styles={styles.botonesGeneral}
                      onPress={() => this.getDataFromApi() }/>
@@ -118,13 +118,11 @@ keyExtractor = (item, idx) => idx.toString()
                   </TouchableOpacity>
                   </View>
                  <View style={styles.filtros}>
-                   
-                 
-                     <Button color="#3DD598" title="F" style={styles.botonesGeneral}></Button>
+                     <Button color="#3DD598" title="f" style={styles.botonesGeneral}></Button>
                  </View>  
              </View>
 
-              <View style={styles.generalBackground,{height:"8%",flexDirection:"row", justifyContent:"space-evenly"}}>
+              <View style={styles.generalBackground,{height:"8vh",width:"100vw",flexDirection:"row", justifyContent:"space-evenly"}}>
                  <View style={styles.botonesCategorias}>
                      <Button color="#3DD598" title="All" style={styles.botonesGeneral}></Button>
                  </View>
@@ -139,7 +137,7 @@ keyExtractor = (item, idx) => idx.toString()
                  </View>
              </View>
 
-              <View style={{ height:"66.5%", width: "100%",}}>
+              <View style={{ height:"66vh", width: "100vw",justifyContent:"space-evenly"}}>
                    {this.state.activity 
                      ?<ActivityIndicator color="red" size={60} />
                   
@@ -152,14 +150,14 @@ keyExtractor = (item, idx) => idx.toString()
                    }
               </View>
 
-              <View style = {{flex:1, height:"12%", width:"100%", backgroundColor:"#30444E", borderRadius: "25 25 0 0", boxShadow: "0 1 14 #19282F", flexDirection:"row", justifyContent:"space-evenly", alignItems:'center',}}>
+              <View style = {{flex:1, height:"12vh", width:"100vw", backgroundColor:"#30444E", borderRadius: "25 25 0 0", boxShadow: "0 1 14 #19282F", flexDirection:"row", justifyContent:"space-evenly", alignItems:'center',}}>
                   <TouchableOpacity style = {styles.botonTacho}> 
                      <Image source={require("../images/botonTacho.png")} style = {styles.iconoMenu}></Image> 
                  </TouchableOpacity>
                  <TouchableOpacity style = {styles.botonHome}> 
                      <Image source={require("../images/botonHome.png")} style = {styles.iconoMenu} ></Image>
                  </TouchableOpacity>
-                 <TouchableOpacity style = {styles.botonNosotros}> 
+                 <TouchableOpacity onPress={ () => this.props.navigation.navigate("About Us")}  style = {styles.botonNosotros}> 
                      <Image source={require("../images/botonNosotros.png")} style = {styles.iconoMenu2}></Image> 
                  </TouchableOpacity>
               </View>
@@ -239,28 +237,25 @@ const styles = StyleSheet.create({
         flex:1,
         justifyContent:'center',
         alignItems: 'center',
+        
     },
 
     //HEADER ARI
     botonesCategorias:{
-        height:"100%",
         justifyContent:"center",
       },
       botonMas:{
-        width:"9.5%",
-        marginLeft:"7.7%",
-        height:"100%",
+        width:"9.5vw",
         justifyContent:"center"
       },
      
       filtros:{
-        width:"13%",
-        marginLeft:"4%",
+        width:"9.5vw",
         height:"100%",
         justifyContent:"center"
       },
       botonesGeneral:{
-        height:"6%"
+        height:"9.5vw",
       },
       generalBackground:{
         backgroundColor: "#22343C"
@@ -270,7 +265,7 @@ const styles = StyleSheet.create({
     
     card:{
         height: 300,
-        width: 198,
+        width: "35vw",
         // flexDirection: 'column',
         
         margin: 5,
@@ -299,14 +294,14 @@ const styles = StyleSheet.create({
         marginTop:2,
       },
       vistaFoto:{
-        marginTop: 15,
+        marginTop: "1vh",
         alignItems:'center',
         
       },
       
       foto:{
-        width: 150,
-        height:150,
+        width: "100%",
+        height:"38vw",
         borderRadius: 20,
       },
 
@@ -338,8 +333,8 @@ const styles = StyleSheet.create({
         backgroundColor: '#537d8f',
          borderColor:'#446675',
          borderRadius:22,
-        width: 220,
-        height: 25,
+        width: "55vw",
+        height: "3vh",
        borderRadius:20,
        justifyContent:'center',
       alignContent:'center',
@@ -350,8 +345,8 @@ const styles = StyleSheet.create({
 
       lupa:{
         backgroundColor:'#3DD598',
-        width: 35,
-       height: 25,
+        width: "9.5vw",
+       height: "3vh",
         borderRadius:20,
         justifyContent:'center',
         alignContent:'center',
@@ -367,8 +362,8 @@ const styles = StyleSheet.create({
       },
 
       imagenLupa:{
-          height: 15,
-          width: 15,
+          height: "2.5vh",
+          width: "3vw",
           justifyContent:'center',
         alignContent:'center',
         alignItems:'center'
