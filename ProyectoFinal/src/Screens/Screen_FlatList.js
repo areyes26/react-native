@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Dimensions } from 'react-native';
+import { vw, vh, vmin, vmax } from 'react-native-expo-viewport-units';
 import Asyncstorage from '@react-native-async-storage/async-storage';
 import { getData } from '../api/RandomUsers'
 import {
@@ -15,7 +17,8 @@ import {
     ScrollView,
     
 } from 'react-native';
-
+const window = Dimensions.get("window");
+const screen = Dimensions.get("screen");
 export class Screen_FlatList extends Component {
     constructor (){
           super();
@@ -71,18 +74,18 @@ export class Screen_FlatList extends Component {
                   
                      <Image source={{uri: item.picture.large}}  style={styles.foto}></Image>
                  </View>
-                 <View style={{height:"10vw",width:"100%",fontSize:"100%",justifyContent:"space-around"} }>
+                 <View style={{height:vw(10),width:"100%",fontSize:"100%",justifyContent:"space-around"} }>
                       <Text style={styles.nombre}>{item.name.first} {item.name.last}</Text>
                  </View>
-                 <View style={{height:"7vw",width:"100%",fontSize:"100%"} }>
+                 <View style={{height:vw(7),width:"100%",fontSize:"100%"} }>
                       <Text style={styles.email}>{item.email}</Text>
                  </View>
-                 <View style={{height:"7vw",width:"100%",fontSize:"100%"} }>
-                      <Text style={{color:"grey", fontSize:"3.5vw", textAlign:"center"}}>Fecha de Nacimiento</Text>
+                 <View style={{height:vw(7),width:"100%",fontSize:"100%"} }>
+                      <Text style={{color:"grey", fontSize:vw(3.5), textAlign:"center"}}>Fecha de Nacimiento</Text>
                       <Text style={styles.nacimiento}>{item.dob.date}</Text>
                  </View>
                  
-                 <View style={{alignItems: 'center',height:"10vw", marginTop:"1vw"}}>
+                 <View style={{alignItems: 'center',height:vw(10), marginTop:vw(1)}}>
 
                    <TouchableOpacity style = {styles.delete} 
                    onPress={() => this.borrarTarjeta(item.login.uuid)}> 
@@ -109,7 +112,7 @@ keyExtractor = (item, idx) => idx.toString()
          <View style={styles.container}>
                {/* <View style={styles.generalBackground,{height:"1%", width: "100%",}}></View> */}
 
-              <View style={styles.generalBackground,{flexDirection:"row",height:"8vh",width:"100vw", display:"flex", flexWrap:"wrap", justifyContent:"space-evenly"}}>
+              <View style={styles.generalBackground,{flexDirection:"row",height:vh(8),width:vw(100), display:"flex", flexWrap:"wrap", justifyContent:"space-evenly"}}>
                  <View style={styles.botonMas}>
                      <Button color="#3DD598" title="+" styles={styles.botonesGeneral}
                      onPress={() => this.getDataFromApi() }/>
@@ -127,7 +130,7 @@ keyExtractor = (item, idx) => idx.toString()
                  </View>  
              </View>
 
-              <View style={styles.generalBackground,{height:"8vh",width:"100vw",flexDirection:"row", justifyContent:"space-evenly"}}>
+              <View style={styles.generalBackground,{height:vh(8),width:vw(100),flexDirection:"row", justifyContent:"space-evenly"}}>
                  <View style={styles.botonesCategorias}>
                      <Button color="#3DD598" title="All" style={styles.botonesGeneral}></Button>
                  </View>
@@ -142,7 +145,7 @@ keyExtractor = (item, idx) => idx.toString()
                  </View>
              </View>
 
-              <View style={{ height:"73vh", width: "100vw",justifyContent:"space-evenly"}}>
+              <View style={{ height:vh(73), width: vw(100),justifyContent:"space-evenly"}}>
                    {this.state.activity 
                      ?<ActivityIndicator color="red" size={60} />
                   
@@ -155,7 +158,7 @@ keyExtractor = (item, idx) => idx.toString()
                    }
               </View>
 
-              <View style = {{flex:1, height:"11%", width:"100vw", backgroundColor:"#30444E", borderRadius: "25 25 0 0", boxShadow: "0 1 14 #19282F", flexDirection:"row", justifyContent:"space-evenly", alignItems:'center',}}>
+              <View style = {{flex:1, height:"11%", width:vw(100), backgroundColor:"#30444E", borderRadius: "25 25 0 0", boxShadow: "0 1 14 #19282F", flexDirection:"row", justifyContent:"space-evenly", alignItems:'center',}}>
                   <TouchableOpacity onPress={ () => this.props.navigation.navigate("Papelera")} style = {styles.botonTacho}> 
                      <Image source={require("../images/botonTacho.png")} style = {styles.iconoMenu}></Image> 
                  </TouchableOpacity>
@@ -250,17 +253,17 @@ const styles = StyleSheet.create({
         justifyContent:"center",
       },
       botonMas:{
-        width:"9.5vw",
+        width:vw(9.5),
         justifyContent:"center"
       },
      
       filtros:{
-        width:"9.5vw",
+        width:vw(9.5),
         height:"100%",
         justifyContent:"center"
       },
       botonesGeneral:{
-        height:"9.5vw",
+        height:vw(9.5),
       },
       generalBackground:{
         backgroundColor: "#22343C"
@@ -269,9 +272,9 @@ const styles = StyleSheet.create({
       //TARJETAS FRANCO
     
     card:{
-        height: "75vw",
-        width: "35vw",
-        marginLeft:"10vw",
+        height: vw(75),
+        width: vw(35),
+        marginLeft:vw(10),
         
         
       },
@@ -281,33 +284,31 @@ const styles = StyleSheet.create({
         textAlign:"center", 
         width:"100%",
         justifyContent:"space-around",
-        fontSize:"4vw"
+        fontSize:vw(4)
       },
 
       email:{
         color: "#96A7AF",
         textAlign:"center",
-        width:"100%",
-        height:"100%",
-        fontSize:"3vw"
+        width: vw(35),
+        fontSize:vw(3)
       },
       nacimiento:{
         color: "grey",
         textAlign:"center",
-        width:"100%",
-        height:"50%",
-        fontSize:"2.5vw",
+        width: vw(35),
+        fontSize:vw(2.5),
         fontWeight:800
       },
       vistaFoto:{
-        marginTop: "1vh",
+        marginTop: vh(1),
         alignItems:'center',
-        height:"38vw",
+        height:vh(18),
       },
       
       foto:{
-        width: "100%",
-        height:"100%",
+        width: vw(35),
+        height:vw(38),
         borderRadius: 20,
       },
 
@@ -323,7 +324,7 @@ const styles = StyleSheet.create({
       textoDelete:{
         color:"#FFFFFF",
         textAlign: 'center',
-        fontSize: "3vw",
+        fontSize: vw(3),
       },
 
       buscador:{
@@ -339,8 +340,8 @@ const styles = StyleSheet.create({
         backgroundColor: '#537d8f',
          borderColor:'#446675',
          borderRadius:22,
-        width: "55vw",
-        height: "3vh",
+        width: vw(55),
+        height: vh(3),
        borderRadius:20,
        justifyContent:'center',
       alignContent:'center',
@@ -351,8 +352,8 @@ const styles = StyleSheet.create({
 
       lupa:{
         backgroundColor:'#3DD598',
-        width: "9.5vw",
-       height: "3vh",
+        width: vw(9.5),
+       height: vw(3),
         borderRadius:20,
         justifyContent:'center',
         alignContent:'center',
@@ -368,8 +369,8 @@ const styles = StyleSheet.create({
       },
 
       imagenLupa:{
-          height: "2.5vh",
-          width: "3vw",
+          height: vh(2.5),
+          width: vw(3),
           justifyContent:'center',
         alignContent:'center',
         alignItems:'center'

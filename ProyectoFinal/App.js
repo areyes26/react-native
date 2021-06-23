@@ -1,5 +1,7 @@
 import 'react-native-gesture-handler';
 import React,{ Component } from 'react';
+import { Dimensions } from 'react-native';
+import { vw, vh, vmin, vmax } from 'react-native-expo-viewport-units';
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack';
 import { Screen_Import } from './src/Screens/Screen_import'

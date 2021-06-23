@@ -1,4 +1,5 @@
 import React,{ Component } from 'react';
+import { vw, vh, vmin, vmax } from 'react-native-expo-viewport-units';
 import{
   Text,
   View,
@@ -16,7 +17,7 @@ export  class Screen_AboutUS extends Component {
      <View style={style.generalBackground,{height:"5%", width: "100%"}}></View>
 
      <View style={style.generalBackground,{height:"8%",flexDirection:"row", width:"100%",alignItems:"center",marginLeft:"9%"}}>
-        <View style={{fontSize:"16vw", color:"white"}}>
+        <View style={{fontSize:vw(16), color:"white"}}>
           About Us
         </View>  
      </View>
@@ -33,12 +34,12 @@ export  class Screen_AboutUS extends Component {
 
           <View style={{width:"60%",justifyContent:"center"}}>
             <View Class="infoNosotros" style={{justifyContent:"space-evenly", height:"60%"}}> 
-              <Text style={{color:"white", fontSize:"4.5vw"}}>Ariel Reyes</Text>
+              <Text style={{color:"white", fontSize:vw(4.5)}}>Ariel Reyes</Text>
               <View style={{flexDirection:"row", alignItems:"center"}}>
-              <Image source={require("../images/puntoOnline.png")} style = {{width:"2vw", height:"2vw"}} ></Image> 
-              <Text style={{color:"#96A7AF", fontSize:"3.4vw"}}>  areyesabarca@udesa.edu.ar</Text>
+              <Image source={require("../images/puntoOnline.png")} style = {{width:vw(2), height:vw(2)}} ></Image> 
+              <Text style={{color:"#96A7AF", fontSize:vw(3.4)}}>  areyesabarca@udesa.edu.ar</Text>
             </View>
-              <Text style={{color:"#96A7AF", fontSize:"4vw"}}>CEO</Text>
+              <Text style={{color:"#96A7AF", fontSize:vw(4)}}>CEO</Text>
             </View>
           </View>
 
@@ -52,15 +53,15 @@ export  class Screen_AboutUS extends Component {
         </View>
 
         <View style={{width:"60%",justifyContent:"center"}}>
-          <View Class="infoNosotros" style={{justifyContent:"space-evenly", height:"60%"}}>  
-            <Text style={{color:"white", fontSize:"4.5vw"}}>Franco Mendelsohn</Text>
-            <View style={{flexDirection:"row", alignItems:"center"}}>
-              <Image source={require("../images/puntoOnline.png")} style = {{width:"2vw", height:"2vw"}} ></Image> 
-              <Text style={{color:"#96A7AF", fontSize:"3.4vw"}}>  fmendelsohn@udesa.edu.ar</Text>
+            <View Class="infoNosotros" style={{justifyContent:"space-evenly", height:"60%"}}> 
+              <Text style={{color:"white", fontSize:vw(4.5)}}>Franco Mendelsohn</Text>
+              <View style={{flexDirection:"row", alignItems:"center"}}>
+              <Image source={require("../images/puntoOnline.png")} style = {{width:vw(2), height:vw(2)}} ></Image> 
+              <Text style={{color:"#96A7AF", fontSize:vw(3.4)}}>  fmendelsohn@udesa.edu.ar</Text>
             </View>
-            <Text style={{color:"#96A7AF", fontSize:"4vw"}}>Product Manager</Text>
+              <Text style={{color:"#96A7AF", fontSize:vw(4)}}>CEO</Text>
+            </View>
           </View>
-        </View>
 
       </View>
 
@@ -72,15 +73,15 @@ export  class Screen_AboutUS extends Component {
         </View>
 
         <View style={{width:"60%",justifyContent:"center"}}>
-          <View Class="infoNosotros" style={{justifyContent:"space-evenly", height:"60%"}}>
-            <Text style={{color:"white", fontSize:"4.5vw"}}>Nicolas Cappone</Text> 
-            <View style={{flexDirection:"row", alignItems:"center"}}>
-              <Image source={require("../images/puntoOnline.png")} style = {{width:"2vw", height:"2vw"}} ></Image> 
-              <Text style={{color:"#96A7AF", fontSize:"3.4vw"}}>  ncappone@udesa.edu.ar</Text>
+            <View Class="infoNosotros" style={{justifyContent:"space-evenly", height:"60%"}}> 
+              <Text style={{color:"white", fontSize:vw(4.5)}}>Nicolas Cappone</Text>
+              <View style={{flexDirection:"row", alignItems:"center"}}>
+              <Image source={require("../images/puntoOnline.png")} style = {{width:vw(2), height:vw(2)}} ></Image> 
+              <Text style={{color:"#96A7AF", fontSize:vw(3.4)}}>  ncaponne@udesa.edu.ar</Text>
             </View>
-            <Text style={{color:"#96A7AF", fontSize:"4.2vw"}}>Desarrollo web</Text>
+              <Text style={{color:"#96A7AF", fontSize:vw(4)}}>Desarollo Web</Text>
+            </View>
           </View>
-        </View>
 
       </View>
 
