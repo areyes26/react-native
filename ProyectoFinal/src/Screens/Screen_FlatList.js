@@ -64,20 +64,24 @@ export class Screen_FlatList extends Component {
 
     renderItem = ({item}) => {   
            return ( 
-            <TouchableOpacity onPress={ () => this.showModal(item)}>
+            <TouchableOpacity onPress={ () => this.showModal(item)} style={{justifyContent: "space-evenly", flexDirection: "row"}}>
             <View style={styles.card}>
               
                  <View style={styles.vistaFoto}> 
                   
                      <Image source={{uri: item.picture.large}}  style={styles.foto}></Image>
                  </View>
-                 <View style={{flex: 1, alignItems: "center" } }>
+                 <View style={{height:"10vw",width:"100%",fontSize:"100%"} }>
                       <Text style={styles.nombre}>{item.name.first} {item.name.last}</Text>
-                      <Text style={styles.email}> {item.email} </Text>
+                 </View>
+                 <View style={{height:"7vw",width:"100%",fontSize:"100%"} }>
+                      <Text style={styles.email}>{item.email}</Text>
+                 </View>
+                 <View style={{height:"7vw",width:"100%",fontSize:"100%"} }>
                       <Text style={styles.nacimiento}>Nacimiento: {item.dob.date}</Text>
                  </View>
                  
-                 <View style={{flex:0.5, alignItems: 'center'}}>
+                 <View style={{alignItems: 'center',height:"10vw", marginTop:"1vw"}}>
 
                    <TouchableOpacity style = {styles.delete} 
                    onPress={() => this.borrarTarjeta(item.login.uuid)}> 
@@ -264,54 +268,51 @@ const styles = StyleSheet.create({
       //TARJETAS FRANCO
     
     card:{
-        height: 300,
+        height: "75vw",
         width: "35vw",
-        // flexDirection: 'column',
-        
-        margin: 5,
-        flex:1,
+        marginLeft:"10vw",
         
         
       },
     
       nombre:{
         color: "white",
-        fontSize: 20,
-        //textAlign:"center", 
-        marginTop:20      
+        textAlign:"center", 
+        width:"100%",
       },
 
       email:{
         color: "#96A7AF",
-        fontSize: 12,
         textAlign:"center",
-        marginTop:5,
+        width:"100%",
+        height:"100%"
       },
       nacimiento:{
         color: "grey",
-        fontSize: 9,
         textAlign:"center",
-        marginTop:2,
+        width:"100%",
+        
+        
       },
       vistaFoto:{
         marginTop: "1vh",
         alignItems:'center',
-        
+        height:"38vw",
       },
       
       foto:{
         width: "100%",
-        height:"38vw",
+        height:"100%",
         borderRadius: 20,
       },
 
       delete:{
         backgroundColor:'#FF575F',
-        width: 90,
-        height: 25,
+        width: "70%",
+        height: "60%",
         borderRadius:20,
         justifyContent:'center',
-        marginTop:10,
+        marginTop:"7.5%"
       },
     
       textoDelete:{
