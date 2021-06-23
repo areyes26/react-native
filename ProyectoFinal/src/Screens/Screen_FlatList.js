@@ -110,7 +110,7 @@ keyExtractor = (item, idx) => idx.toString()
 
         return(
          <View style={styles.container}>
-               {/* <View style={styles.generalBackground,{height:"1%", width: "100%",}}></View> */}
+               <View style={styles.generalBackground,{height:"2%", width: "100%",}}></View>
 
               <View style={styles.generalBackground,{flexDirection:"row",height:vh(8),width:vw(100), display:"flex", flexWrap:"wrap", justifyContent:"space-evenly"}}>
                  <View style={styles.botonMas}>
@@ -145,7 +145,7 @@ keyExtractor = (item, idx) => idx.toString()
                  </View>
              </View>
 
-              <View style={{ height:vh(73), width: vw(100),justifyContent:"space-evenly"}}>
+              <View style={{ height:vh(71), width: vw(100),justifyContent:"space-evenly"}}>
                    {this.state.activity 
                      ?<ActivityIndicator color="red" size={60} />
                   
@@ -298,7 +298,7 @@ const styles = StyleSheet.create({
         textAlign:"center",
         width: vw(35),
         fontSize:vw(2.5),
-        fontWeight:800
+        
       },
       vistaFoto:{
         marginTop: vh(1),
