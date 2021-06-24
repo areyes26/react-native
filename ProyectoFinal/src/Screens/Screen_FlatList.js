@@ -303,7 +303,7 @@ async storeData() {
 
                    <View style={{height:100}}>
                    <ScrollView style={{height:100, width:'90%'}}>
-                   <Text style={styles.modalMasTextoComentario}>Coment: {this.state.textHandler} {this.state.importedcomentarios}  </Text>
+                   <Text style={styles.modalMasTextoComentario}>Coment: {this.state.importedcomentarios}  </Text>
                   </ScrollView>
                   </View>
                    </View>
