@@ -175,22 +175,24 @@ async storeData() {
   filtrarTarjetas(){
   
 
-    this.state.users.filter( (pingo) => {
-    if (pingo.location.country.includes(this.state.info ) === this.state.info){
+    this.state.users.filter( (usuarios) => {
+    if (usuarios.location.country.includes(this.state.info )){
       let resultado = this.state.users.filter( (users) => {
         return users.location.country.includes(this.state.info )
       }) 
       this.setState({users: resultado})
-    } else if (pingo.name.first === this.state.info){
+    } else if (usuarios.name.first.includes(this.state.info )){
       let resultado = this.state.users.filter( (users) => {
         return users.name.first.includes(this.state.info)
       })
       this.setState({users: resultado})
-    } else if (pingo.name.last === this.state.info){
+    } else if (usuarios.name.last.includes(this.state.info )){
       let resultado = this.state.users.filter( (users) => {
         return users.name.last.includes(this.state.info)
       })  
       this.setState({users:resultado})
+    } else {
+      Alert.alert()
     }
   })
   }
