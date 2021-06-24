@@ -140,12 +140,14 @@ async storeData() {
 
         return(
          <View style={styles.container}>
+
+             {/* Espacio Para que se vea bien en iphone 10 */}
                <View style={styles.generalBackground,{height:"2%", width: "100%",}}></View>
-                <View>
+                <View style={{height:"5%"}}>
                     <Text style={{color:"white", fontSize:vw(5)}}>Ingrese numero de contactos a buscar</Text>
                 </View>
                 {/* ACA VA LA INFO PARA BUSCAR LA CANTIDAD DE USUARIOS DESEADOS EN LA API */}
-                <View style={styles.generalBackground,{flexDirection:"row",height:vh(8),width:vw(100), display:"flex", flexWrap:"wrap", justifyContent:"space-evenly"}}>
+                <View style={styles.generalBackground,{flexDirection:"row",height:"8%",width:vw(100), display:"flex", flexWrap:"wrap", justifyContent:"space-evenly"}}>
                   <View style={styles.buscador}>
                     <TextInput 
                     style={styles.buscadorInput}
@@ -166,16 +168,31 @@ async storeData() {
              </View>
 
 
-              <View style={{ height:vh(71), width: vw(100),justifyContent:"space-evenly"}}>
+              <View style={{ height:"66%", width: vw(100),justifyContent:"space-evenly"}}>
                   <FlatList 
                      data={this.state.users} 
                     keyExtractor = { this.keyExtractor }
                     renderItem={ this.renderItem }
                     numColumns={2}
                     />
-                     {/* <ActivityIndicator color="red" size={60} /> */}
+                {/* <ActivityIndicator color="red" size={60} /> */}
               </View>
 
+            {/* BOTON GUARDAR CONTACTOS */}
+            <View style={styles.generalBackground,{height:'8%',width:vw(100),flexDirection:"row", justifyContent:"space-evenly"}}>
+                  <View style={styles.botonesCategorias}>
+                      <Button color="#3DD598" title="GUARDAR CONTACTOS" onPress={() => storeLocal('localUsers', this.state.users)} style={styles.botonesGeneral}></Button>
+                  </View>         
+             </View>
+            
+              {/* FOOTER */}
+              <View style={{height:"11%", width:"100%", backgroundColor:"#30444E", borderRadius: "25 25 0 0", boxShadow: "0 1 14 #19282F", flexDirection:"row", justifyContent:"space-evenly", alignItems:"center"}}>
+            
+                <TouchableOpacity onPress={ () => this.props.navigation.navigate("Home")} style={styles.botonHome}> 
+                    <Image source={require("../images/botonHome.png")} style = {styles.iconoMenu} ></Image>
+                </TouchableOpacity>
+            
+              </View>
               
               <Modal visible={this.state.showModal} animationType='slide' transparent={true}>
                 <View style={styles.modalContainer}>
@@ -247,6 +264,7 @@ async storeData() {
                    }
                    </View>
                 </View>
+                
               </Modal>
          </View>
         )
@@ -294,6 +312,14 @@ const styles = StyleSheet.create({
         marginLeft:vw(10),
         
         
+      },
+      botonHome:{
+        backgroundColor: "#3DD598",
+        borderRadius: 50,
+        width: 60,
+        height: 60,
+        justifyContent: 'center',
+        alignItems:'center',
       },
     
       nombre:{
