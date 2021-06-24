@@ -262,10 +262,10 @@ const rotB = this.rotation.interpolate({
     height:"23%"
   },
   imageUs:{
-    width: 120,
-    height: 110,
-   marginLeft: 20,
-   marginRight: 20,
+    width: vw(33),
+    height: vh(17),
+   marginLeft: 10,
+   marginRight: 10,
    marginTop: 10,
 
    borderRadius: 10,
