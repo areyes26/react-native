@@ -172,6 +172,35 @@ async storeData() {
 
 
 
+  filtrarTarjetas(){
+  
+
+    this.state.users.filter( (pingo) => {
+    if (pingo.location.country.includes(this.state.info ) === this.state.info){
+      let resultado = this.state.users.filter( (users) => {
+        return users.location.country.includes(this.state.info )
+      }) 
+      this.setState({users: resultado})
+    } else if (pingo.name.first === this.state.info){
+      let resultado = this.state.users.filter( (users) => {
+        return users.name.first.includes(this.state.info)
+      })
+      this.setState({users: resultado})
+    } else if (pingo.name.last === this.state.info){
+      let resultado = this.state.users.filter( (users) => {
+        return users.name.last.includes(this.state.info)
+      })  
+      this.setState({users:resultado})
+    }
+  })
+  }
+  
+
+
+
+
+
+
 
     render (){
       
@@ -180,26 +209,32 @@ async storeData() {
                <View style={styles.generalBackground,{height:"2%", width: "100%",}}></View>
 
               <View style={styles.generalBackground,{flexDirection:"row",height:vh(8),width:vw(100), display:"flex", flexWrap:"wrap", justifyContent:"space-evenly"}}>
+                
                  <View style={styles.botonMas}>
                      <Button color="#3DD598" title="+" styles={styles.botonesGeneral}
                      onPress={() => this.getDataFromApi() }/>
                  </View>
+
                   <View style={styles.buscador}>
-                  <TextInput style={styles.buscadorInput}></TextInput>
+                  <TextInput style={styles.buscadorInput} onChangeText={ text => this.setState({info:text})}></TextInput>
                   </View>
+
                   <View style = {styles.viewLupa}>
-                  <TouchableOpacity style = {styles.lupa} >
-                  <Image source={require("../images/enviar.png")} style = {styles.imagenLupa}></Image>                                   
+                  <TouchableOpacity style = {styles.lupa} onPress={this.filtrarTarjetas.bind(this)}>
+                  <Image source={require("../images/enviar.png")}  style = {styles.imagenLupa}></Image>                                   
                   </TouchableOpacity>
                   </View>
+
+
                  <View style={styles.filtros}>
                      <Button color="#3DD598" title="f" style={styles.botonesGeneral}></Button>
                  </View>  
+
              </View>
 
               <View style={styles.generalBackground,{height:vh(8),width:vw(100),flexDirection:"row", justifyContent:"space-evenly"}}>
                   <View style={styles.botonesCategorias}>
-                      <Button color="#3DD598" title="Edad" onPress={ () => this.props.navigation.navigate("Buscar Contactos")} style={styles.botonesGeneral}></Button>
+                      <Button color="#3DD598" title="Traer usuarios" onPress={ () => this.props.navigation.navigate("Buscar Contactos")} style={styles.botonesGeneral}></Button>
                   </View>         
              </View>
 
