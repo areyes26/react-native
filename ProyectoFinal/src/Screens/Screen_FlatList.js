@@ -171,19 +171,9 @@ async storeData() {
              </View>
 
               <View style={styles.generalBackground,{height:vh(8),width:vw(100),flexDirection:"row", justifyContent:"space-evenly"}}>
-                 <View style={styles.botonesCategorias}>
-                     <Button color="#3DD598" title="All" style={styles.botonesGeneral}></Button>
-                 </View>
                   <View style={styles.botonesCategorias}>
-                      <Button color="#3DD598" title="Edad" style={styles.botonesGeneral}></Button>
-                  </View>
-                  <View style={styles.botonesCategorias}>
-                      <Button color="#3DD598" title="A to Z" style={styles.botonesGeneral}></Button>
-                 </View>
-                 <View style={styles.botonesCategorias}>
-                      <Button color="#3DD598" title="Z to A" style={styles.botonesGeneral}></Button>
-                 </View>
-                  
+                      <Button color="#3DD598" title="Edad" onPress={ () => this.props.navigation.navigate("Buscar Contactos")} style={styles.botonesGeneral}></Button>
+                  </View>         
              </View>
 
               <View style={{ height:vh(71), width: vw(100),justifyContent:"space-evenly"}}>

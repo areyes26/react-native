@@ -9,6 +9,7 @@ import { Screen_ViewImportedCard } from './src/Screens/Screen_ViewImportedCard'
 import { Screen_FlatList } from './src/Screens/Screen_FlatList'
 import { Screen_AboutUS } from './src/Screens/Screen_AboutUs'
 import { Screen_DeletedCard} from './src/Screens/Screen_DeleteCard'
+import { Screen_ContactosDeseados } from './src/Screens/Screen_ContactosDeseados';
 import{
   View,
   Text,
@@ -45,11 +46,13 @@ export default class App extends Component {
     return (
       <NavigationContainer>
         <Stack.Navigator screenOptions={{headerShown: false}}>
+        
           <Stack.Screen name="Home" component={Screen_FlatList}  />
           <Stack.Screen name="About Us" component={Screen_AboutUS} />
           <Stack.Screen name="View Imported Card" component={Screen_ViewImportedCard} />
           <Stack.Screen name="Import" component={Screen_Import} />
           <Stack.Screen name="Papelera" component={Screen_DeletedCard} />
+          <Stack.Screen name="Buscar Contactos" component={Screen_ContactosDeseados} />
         </Stack.Navigator>
       </NavigationContainer>
     );
