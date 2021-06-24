@@ -123,7 +123,7 @@ topDown = () => {
 
 async storeData() {
   try{
-    const jsonUsers = JSON.stringify(this.state.textHandler);
+    const jsonUsers = JSON.stringify(this.state.text);
     await Asyncstorage.setItem("Comentarios", jsonUsers)
     console.log("Datos almacenados ")
   } catch(e) {
@@ -237,7 +237,7 @@ async storeData() {
 
                    <View style={{height:100}}>
                    <ScrollView style={{height:100, width:'90%'}}>
-                   <Text style={styles.modalMasTextoComentario}>Coment: {this.state.textHandler}  </Text>
+                   <Text style={styles.modalMasTextoComentario}>Coment: {this.state.text}  </Text>
                   </ScrollView>
                   </View>
                    </View>
@@ -249,8 +249,13 @@ async storeData() {
                   <TextInput style={styles.modalInput} onChangeText={text => this.setState({textHandler: text})}></TextInput>
                   </View>
                   <View >
-                  <TouchableOpacity style = {styles.modalEdit} onPress={this.storeData.bind(this)}>  
+                  <TouchableOpacity style = {styles.modalEdit} onPress={() => this.setState({text: this.state.textHandler})}>  
                   <Image source={require("../images/enviar.png")}></Image>                                   
+                  </TouchableOpacity>
+                  </View>
+                  <View >
+                  <TouchableOpacity style = {styles.modalGuardado} onPress={this.storeData.bind(this)}>  
+                  <Text>Guardar datos</Text>                                 
                   </TouchableOpacity>
                   </View>
                   <TouchableOpacity style = {styles.modalDelete} onPress={() => this.borrarTarjeta(this.state.selectItem.login.uuid)}> 
@@ -375,7 +380,7 @@ const styles = StyleSheet.create({
          borderColor:'#446675',
          borderRadius:22,
         width: vw(55),
-        height: vh(3),
+        height: vh(4),
        borderRadius:20,
        justifyContent:'center',
       alignContent:'center',
@@ -387,7 +392,7 @@ const styles = StyleSheet.create({
       lupa:{
         backgroundColor:'#3DD598',
         width: vw(9.5),
-       height: vw(3),
+       height: vw(8),
         borderRadius:20,
         justifyContent:'center',
         alignContent:'center',
@@ -549,7 +554,7 @@ botonHome:{
 
   modalDelete:{
     backgroundColor:'#FF575F',
-    width: 60,
+    width: 40,
     height: 40,
     borderRadius:20,
     justifyContent:'center',
@@ -558,11 +563,23 @@ botonHome:{
 
   },
 
-  
+  modalGuardado:{
+    backgroundColor:'#3DD598',
+    width: 60,
+    color: "white",
+    fontSize: vw(2),
+    height: 40,
+    borderRadius:5,
+    justifyContent:'center',
+    alignContent:'center',
+    alignItems:'center'
+
+  },
+
 
   modalEdit:{
     backgroundColor:'#3DD598',
-    width: 60,
+    width: 50,
     height: 40,
     borderRadius:20,
     justifyContent:'center',
@@ -578,7 +595,7 @@ botonHome:{
     backgroundColor: '#537d8f',
     borderColor:'#446675',
     borderRadius:22,
-    width: 250,
+    width: 200,
     height: 40,
     borderRadius:20,
     justifyContent:'center',
