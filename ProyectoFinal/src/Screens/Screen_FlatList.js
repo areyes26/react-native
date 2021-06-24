@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Dimensions } from 'react-native';
+import { Alert, Dimensions } from 'react-native';
 import { vw, vh, vmin, vmax } from 'react-native-expo-viewport-units';
 import Asyncstorage from '@react-native-async-storage/async-storage';
 import { getData } from '../api/RandomUsers'
@@ -21,6 +21,8 @@ import {
     
 } from 'react-native';
 
+
+
 const window = Dimensions.get("window");
 const screen = Dimensions.get("screen");
 export class Screen_FlatList extends Component {
@@ -34,6 +36,7 @@ export class Screen_FlatList extends Component {
               textHandler: '',
               texto: '',
               toValue: 1.4,
+              importedcomentarios: [],
           }
     }
 
@@ -119,13 +122,22 @@ topDown = () => {
 }
 
 
-
+async getData1() {
+  try{
+   const resultado = await Asyncstorage.getItem('Comentarios');
+   this.setState({importedcomentarios: JSON.parse(resultado)});
+   console.log("Datos recuperados")
+ }catch(e) {
+console.log(e)
+ }
+ } 
 
 async storeData() {
   try{
-    const jsonUsers = JSON.stringify(this.state.text);
+    const jsonUsers = JSON.stringify(this.state.textHandler);
     await Asyncstorage.setItem("Comentarios", jsonUsers)
     console.log("Datos almacenados ")
+    Alert.alert("Se guardaron correctamente los datos ")
   } catch(e) {
     console.log(e)
   }
@@ -135,7 +147,7 @@ async storeData() {
 
 
     render (){
-
+      
         return(
          <View style={styles.container}>
                <View style={styles.generalBackground,{height:"2%", width: "100%",}}></View>
@@ -237,7 +249,7 @@ async storeData() {
 
                    <View style={{height:100}}>
                    <ScrollView style={{height:100, width:'90%'}}>
-                   <Text style={styles.modalMasTextoComentario}>Coment: {this.state.text}  </Text>
+                   <Text style={styles.modalMasTextoComentario}>Coment: {this.state.textHandler} {this.state.importedcomentarios}  </Text>
                   </ScrollView>
                   </View>
                    </View>
@@ -249,15 +261,16 @@ async storeData() {
                   <TextInput style={styles.modalInput} onChangeText={text => this.setState({textHandler: text})}></TextInput>
                   </View>
                   <View >
-                  <TouchableOpacity style = {styles.modalEdit} onPress={() => this.setState({text: this.state.textHandler})}>  
-                  <Image source={require("../images/enviar.png")}></Image>                                   
-                  </TouchableOpacity>
-                  </View>
-                  <View >
                   <TouchableOpacity style = {styles.modalGuardado} onPress={this.storeData.bind(this)}>  
                   <Text>Guardar datos</Text>                                 
                   </TouchableOpacity>
                   </View>
+                  <View >
+                  <TouchableOpacity style = {styles.modalEdit} onPress={this.getData1.bind(this)}>  
+                  <Image source={require("../images/enviar.png")}></Image>                                   
+                  </TouchableOpacity>
+                  </View>
+
                   <TouchableOpacity style = {styles.modalDelete} onPress={() => this.borrarTarjeta(this.state.selectItem.login.uuid)}> 
                   <Image source={require("../images/tachoblanco.png")}  ></Image>                 
                   </TouchableOpacity>
@@ -518,7 +531,7 @@ botonHome:{
   },
   
   modalMasInfo:{
-  
+ 
   },
 
   modalMasTexto:{
