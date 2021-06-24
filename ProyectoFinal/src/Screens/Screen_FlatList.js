@@ -37,6 +37,8 @@ export class Screen_FlatList extends Component {
               texto: '',
               toValue: 1.4,
               importedcomentarios: [],
+              importedBorrados: [],
+              borrados:'',
           }
     }
 
@@ -70,7 +72,7 @@ export class Screen_FlatList extends Component {
       
       }
 
-     
+      
 
 
     renderItem = ({item}) => {   
@@ -96,7 +98,7 @@ export class Screen_FlatList extends Component {
                  <View style={{alignItems: 'center',height:vw(10), marginTop:vw(1)}}>
 
                    <TouchableOpacity style = {styles.delete} 
-                   onPress={() => this.borrarTarjeta(item.login.uuid)}> 
+                   onPress={() => this.getData2(item.login.uuid)}> 
                    <Text style={styles.textoDelete} > Borrar </Text>                    
                    </TouchableOpacity>
                 </View >
@@ -142,7 +144,32 @@ async storeData() {
     console.log(e)
   }
   }
-  
+
+
+  async getData2(idTarjeta) {
+    let resultados = this.state.users.filter((item)=>{
+      return item.login.uuid !== idTarjeta;
+    })
+    this.setState({users:resultados})
+    try{
+     const resultado = await Asyncstorage.getItem('UsuariosBorrados');
+     this.setState({importedBorrados: JSON.stringify(resultado)});
+     console.log("Datos borrados")
+   }catch(e) {
+  console.log(e)
+   }
+   } 
+
+   async storeData2() {
+    try{
+      const jsonUsers = JSON.stringify(this.state.borrados);
+      await Asyncstorage.setItem("UsuariosBorrados", jsonUsers)
+      console.log("Datos importados")
+    } catch(e) {
+      console.log(e)
+    }
+    }
+
 
 
 
@@ -261,7 +288,7 @@ async storeData() {
                   </TouchableOpacity>
                   </View>
 
-                  <TouchableOpacity style = {styles.modalDelete} onPress={() => this.borrarTarjeta(this.state.selectItem.login.uuid)}> 
+                  <TouchableOpacity style = {styles.modalDelete} onPress={() => this.deleteContact(this.state.selectItem.login.uuid)}> 
                   <Image source={require("../images/tachoblanco.png")}  ></Image>                 
                   </TouchableOpacity>
                   </View >

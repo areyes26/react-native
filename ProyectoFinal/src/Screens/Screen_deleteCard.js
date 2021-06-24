@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Asyncstorage from '@react-native-async-storage/async-storage';
+import { getLocal } from '../Screens/Screen_FlatList'
 import{
     View,
     Text,
@@ -19,37 +20,49 @@ class Screen_DeletedCard extends Component {
     constructor (){
           super();
           this.state = {
-              importedusers: []
+              users: []
           }
     }
 
-    async storeData() {
-        try{
-         const resultado = await Asyncstorage.getItem('Users');
-         this.setState({importedusers: JSON.parse(resultado)});
-         console.log("Datos recuperados")
-       }catch(e) {
-    console.log(e)
-       }
-       } 
+    // async storeData() {
+    //     try{
+    //      const resultado = await Asyncstorage.getItem('Users');
+    //      this.setState({importedusers: JSON.parse(resultado)});
+    //      console.log("Datos recuperados")
+    //    }catch(e) {
+    // console.log(e)
+    //    }
+    //    } 
+
+    componentDidMount(){
+      this.storeData2('usuariosBorrados').then((users) => {this.setState({users: users})})
+  }
+
+  async storeData2() {
+    try{
+      const jsonUsers = JSON.stringify(this.state.users);
+      await Asyncstorage.setItem("UsuariosBorrados", jsonUsers)
+      console.log("Datos importados")
+      Alert.alert("Se guardaron correctamente los datos ")
+    } catch(e) {
+      console.log(e)
+    }
+    }
 
 
+    
 render (){
 
-    const values = this.state.importedusers.map(item =>
-        
-        <Text key={item.login.uuid}>{item.name.first}</Text>
-        )
+    
     return (
     <View style={{flex:1, backgroundColor: "#22343C"}}> 
 
     <View style={{height:"5%", width: "100%",}}></View>
 
         <View style={{height:"84%"}}>
-        <Text >Mostramos los valores </Text>
-            {values}
-            <Button color="#3DD598" onPress={this.storeData.bind(this) } title="Recuperar datos"></Button>
-            <Button color="#3DD598" onPress={ () => this.setState({importedusers: []}) } title="Borrar datos"></Button>
+        
+        <Text >{this.state.users.name.first} </Text>
+            
         </View>
 
         <View style = {{height:"11%", width:"100%", backgroundColor:"#30444E", borderRadius: "25 25 0 0", boxShadow: "0 1 14 #19282F", flexDirection:"row", justifyContent:"space-evenly", alignItems:"center"}}>
