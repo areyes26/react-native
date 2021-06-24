@@ -226,9 +226,7 @@ async storeData() {
                   </View>
 
 
-                 <View style={styles.filtros}>
-                     <Button color="#3DD598" title="f" style={styles.botonesGeneral}></Button>
-                 </View>  
+                 
 
              </View>
 
