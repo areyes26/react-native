@@ -121,6 +121,18 @@ topDown = () => {
 
 
 
+async storeData() {
+  try{
+    const jsonUsers = JSON.stringify(this.state.textHandler);
+    await Asyncstorage.setItem("Comentarios", jsonUsers)
+    console.log("Datos almacenados ")
+  } catch(e) {
+    console.log(e)
+  }
+  }
+  
+
+
 
     render (){
 
@@ -159,6 +171,7 @@ topDown = () => {
                  <View style={styles.botonesCategorias}>
                       <Button color="#3DD598" title="Z to A" style={styles.botonesGeneral}></Button>
                  </View>
+                  
              </View>
 
               <View style={{ height:vh(71), width: vw(100),justifyContent:"space-evenly"}}>
@@ -224,7 +237,7 @@ topDown = () => {
 
                    <View style={{height:100}}>
                    <ScrollView style={{height:100, width:'90%'}}>
-                   <Text style={styles.modalMasTextoComentario}>Coment: {this.state.texto}  </Text>
+                   <Text style={styles.modalMasTextoComentario}>Coment: {this.state.textHandler}  </Text>
                   </ScrollView>
                   </View>
                    </View>
@@ -236,7 +249,7 @@ topDown = () => {
                   <TextInput style={styles.modalInput} onChangeText={text => this.setState({textHandler: text})}></TextInput>
                   </View>
                   <View >
-                  <TouchableOpacity style = {styles.modalEdit} onPress={() => this.setState({texto: this.state.textHandler})}> 
+                  <TouchableOpacity style = {styles.modalEdit} onPress={this.storeData.bind(this)}>  
                   <Image source={require("../images/enviar.png")}></Image>                                   
                   </TouchableOpacity>
                   </View>
