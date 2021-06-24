@@ -191,9 +191,7 @@ async storeData() {
         return users.name.last.includes(this.state.info)
       })  
       this.setState({users:resultado})
-    } else {
-      Alert.alert()
-    }
+    } 
   })
   }
   
