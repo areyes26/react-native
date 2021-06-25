@@ -360,7 +360,7 @@ async storeData() {
                   </TouchableOpacity>
                   </View>
 
-                  <TouchableOpacity style = {styles.modalDelete} onPress={() => this.deleteContact(this.state.selectItem.login.uuid)}> 
+                  <TouchableOpacity style = {styles.modalDelete} onPress={() => this.borramosTarjeta(this.state.selectItem.login.uuid)}> 
                   <Image source={require("../assets/images/tachoblanco.png")}  ></Image>                 
                   </TouchableOpacity>
                   </View >
