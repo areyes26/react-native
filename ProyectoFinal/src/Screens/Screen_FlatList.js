@@ -68,7 +68,7 @@ export class Screen_FlatList extends Component {
     }
 
     borrarTarjeta (idTarjeta){
-      let resultados = this.state.users.filter((item)=>{
+      let resultados = this.state.importedUsers.filter((item)=>{
         return item.login.uuid !== idTarjeta;
       })
       this.setState({users:resultados})
@@ -163,12 +163,12 @@ async storeData() {
    } 
 
    async storeData2(idTarjeta) {
-    let resultados = this.state.users.filter((item)=>{
+    let resultados = this.state.importedUsers.filter((item)=>{
       return item.login.uuid !== idTarjeta;
     })
     this.setState({users:resultados})
     try{
-      const jsonUsers = JSON.stringify(this.state.users);
+      const jsonUsers = JSON.stringify(this.state.importedUsers);
       await Asyncstorage.setItem("UsuariosBorrados", jsonUsers)
       console.log("Datos importados")
       console.log(this.state.borrados);
