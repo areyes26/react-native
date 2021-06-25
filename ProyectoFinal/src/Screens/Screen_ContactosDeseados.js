@@ -17,7 +17,7 @@ import {
     ScrollView,
     Animated,
     Easing
-  
+  ,Alert
     
 } from 'react-native';
 
@@ -124,14 +124,15 @@ topDown = () => {
 
 
 async storeData() {
-  try{
-    const jsonUsers = JSON.stringify(this.state.text);
-    await Asyncstorage.setItem("Comentarios", jsonUsers)
-    console.log("Datos almacenados ")
-  } catch(e) {
-    console.log(e)
-  }
-  }
+    try{
+      const jsonUsers = JSON.stringify(this.state.textHandler);
+      await Asyncstorage.setItem("Users", jsonUsers)
+      console.log("Datos almacenados ")
+      Alert.alert("Se guardaron correctamente los datos ")
+    } catch(e) {
+      console.log(e)
+    }
+    }
   
 
 
@@ -142,12 +143,12 @@ async storeData() {
          <View style={styles.container}>
 
              {/* Espacio Para que se vea bien en iphone 10 */}
-               <View style={styles.generalBackground,{height:"2%", width: "100%",}}></View>
-                <View style={{height:"5%"}}>
+               <View style={styles.generalBackground,{height:"8%", width: "100%",}}></View>
+                <View style={{height:"4%"}}>
                     <Text style={{color:"white", fontSize:vw(5)}}>Ingrese numero de contactos a buscar</Text>
                 </View>
                 {/* ACA VA LA INFO PARA BUSCAR LA CANTIDAD DE USUARIOS DESEADOS EN LA API */}
-                <View style={styles.generalBackground,{flexDirection:"row",height:"8%",width:vw(100), display:"flex", flexWrap:"wrap", justifyContent:"space-evenly"}}>
+                <View style={styles.generalBackground,{flexDirection:"row",height:"6%",width:vw(100), display:"flex", flexWrap:"wrap", justifyContent:"space-evenly"}}>
                   <View style={styles.buscador}>
                     <TextInput 
                     style={styles.buscadorInput}
@@ -168,7 +169,7 @@ async storeData() {
              </View>
 
 
-              <View style={{ height:"66%", width: vw(100),justifyContent:"space-evenly"}}>
+              <View style={{ height:vh(62), width: vw(100),justifyContent:"space-evenly"}}>
                   <FlatList 
                      data={this.state.users} 
                     keyExtractor = { this.keyExtractor }
@@ -179,14 +180,14 @@ async storeData() {
               </View>
 
             {/* BOTON GUARDAR CONTACTOS */}
-            <View style={styles.generalBackground,{height:'8%',width:vw(100),flexDirection:"row", justifyContent:"space-evenly"}}>
+            <View style={styles.generalBackground,{height:vh(8),width:vw(100),flexDirection:"row", justifyContent:"space-evenly"}}>
                   <View style={styles.botonesCategorias}>
-                      <Button color="#3DD598" title="GUARDAR CONTACTOS" onPress={() => storeLocal('localUsers', this.state.users)} style={styles.botonesGeneral}></Button>
+                      <Button color="#3DD598" title="GUARDAR CONTACTOS" onPress={this.storeData.bind(this)}></Button>
                   </View>         
              </View>
             
               {/* FOOTER */}
-              <View style={{height:"11%", width:"100%", backgroundColor:"#30444E", borderRadius: "25 25 0 0", boxShadow: "0 1 14 #19282F", flexDirection:"row", justifyContent:"space-evenly", alignItems:"center"}}>
+              <View style={{height:vh(11), width:"100%", backgroundColor:"#30444E", borderRadius: "25 25 0 0", boxShadow: "0 1 14 #19282F", flexDirection:"row", justifyContent:"space-evenly", alignItems:"center"}}>
             
                 <TouchableOpacity onPress={ () => this.props.navigation.navigate("Home")} style={styles.botonHome}> 
                     <Image source={require("../images/botonHome.png")} style = {styles.iconoMenu} ></Image>

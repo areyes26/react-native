@@ -58,7 +58,17 @@ export class Screen_FlatList extends Component {
       console.log(usuarios);
       this.setState({users: usuarios, activity: false});
     }
-
+    async getUserData() {
+      try{
+       const resultado = await Asyncstorage.getItem('Users');
+       this.setState({users: JSON.parse(resultado)});
+       console.log("Datos de los contactos recuperados")
+       console.log(this.state.users)
+     }catch(e) {
+    console.log(e)
+     }
+     } 
+     
     showModal(item){
       this.setState({selectItem: item, showModal: true});
     }
@@ -233,25 +243,33 @@ async storeData() {
                  
              </View>
 
-              <View style={styles.generalBackground,{height:vh(8),width:vw(100),flexDirection:"row", justifyContent:"space-evenly"}}>
+              <View style={styles.generalBackground,{height:vh(7),width:vw(100),flexDirection:"row", justifyContent:"space-evenly"}}>
                   <View style={styles.botonesCategorias}>
                       <Button color="#3DD598" title="Traer usuarios" onPress={ () => this.props.navigation.navigate("Buscar Contactos")} style={styles.botonesGeneral}></Button>
                   </View>         
              </View>
 
-              <View style={{ height:vh(71), width: vw(100),justifyContent:"space-evenly"}}>
-                   {this.state.activity 
-                     ?<ActivityIndicator color="red" size={60} />
+              <View style={{ height:vh(65), width: vw(100),justifyContent:"space-evenly"}}>
+                   {/* {this.state.activity  */}
+                     {/* ?<ActivityIndicator color="red" size={60} /> */}
                   
-                     :<FlatList 
+                     {/* : */}
+                     <FlatList 
                         data={this.state.users} 
                        keyExtractor = { this.keyExtractor }
                        renderItem={ this.renderItem }
                        numColumns={2}
-                     />
-                   }
+                    />
+                   {/* } */}
               </View>
-
+              
+                   {/* ACA SE RECUPERAN LOS CONTACTOS IMPORTADOS */}
+              <View style={styles.generalBackground,{height:vh(7),width:vw(100),flexDirection:"row", justifyContent:"space-evenly"}}>
+                  <View style={styles.botonesCategorias}>
+                      <Button color="#3DD598" title="Mostrar Contactos" onPress={this.getUserData.bind(this)}></Button>
+                  </View>         
+             </View>
+             
               <View style = {{flex:1, height:"11%", width:vw(100), backgroundColor:"#30444E", borderRadius: "25 25 0 0", boxShadow: "0 1 14 #19282F", flexDirection:"row", justifyContent:"space-evenly", alignItems:'center',}}>
                   <TouchableOpacity onPress={ () => this.props.navigation.navigate("Papelera")} style = {styles.botonTacho}> 
                      <Image source={require("../images/botonTacho.png")} style = {styles.iconoMenu}></Image> 
