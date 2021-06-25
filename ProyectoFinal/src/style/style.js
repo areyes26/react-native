@@ -137,7 +137,7 @@ const styles = StyleSheet.create({
     //Contenido About Us
 
   conteinerUs:{
-    height:"74%",
+    height:"73%",
     width:"82%",
     display:"flex",
     flexWrap:"wrap",
