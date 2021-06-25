@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Alert, Dimensions } from 'react-native';
 import { vw, vh, vmin, vmax } from 'react-native-expo-viewport-units';
+import {styles} from '../style/style';
 import Asyncstorage from '@react-native-async-storage/async-storage';
 import { getData } from '../api/RandomUsers'
 import {
@@ -58,7 +59,17 @@ export class Screen_FlatList extends Component {
       console.log(usuarios);
       this.setState({users: usuarios, activity: false});
     }
-
+    async getUserData() {
+      try{
+       const resultado = await Asyncstorage.getItem('Users');
+       this.setState({users: JSON.parse(resultado)});
+       console.log("Datos de los contactos recuperados")
+       console.log(this.state.users)
+     }catch(e) {
+    console.log(e)
+     }
+     } 
+     
     showModal(item){
       this.setState({selectItem: item, showModal: true});
     }
@@ -206,13 +217,17 @@ async storeData() {
       
         return(
          <View style={styles.container}>
-               <View style={styles.generalBackground,{height:"2%", width: "100%",}}></View>
+               <View style={styles.generalBackground,{height:"2%", width: "100%", marginTop:30,}}></View>
 
-              <View style={styles.generalBackground,{flexDirection:"row",height:vh(8),width:vw(100), display:"flex", flexWrap:"wrap", justifyContent:"space-evenly"}}>
+              <View style={styles.generalBackground,{flexDirection:"row",height:vh(8),width:vw(100), display:"flex", flexWrap:"wrap", justifyContent:"space-evenly", justifyContent:'center',
+    alignContent:'center',
+    alignItems:'center'}}>
                 
                  <View style={styles.botonMas}>
-                     <Button color="#3DD598" title="+" styles={styles.botonesGeneral}
-                     onPress={() => this.getDataFromApi() }/>
+                 <TouchableOpacity styles={styles.botonesGeneral} onPress={() => this.getDataFromApi() }>
+                  <Image source={require("../images/recargar.png")}  style = {styles.imagenLupa}></Image>                                   
+                  </TouchableOpacity>
+                     
                  </View>
 
                   <View style={styles.buscador}>
@@ -221,34 +236,41 @@ async storeData() {
 
                   <View style = {styles.viewLupa}>
                   <TouchableOpacity style = {styles.lupa} onPress={this.filtrarTarjetas.bind(this)}>
-                  <Image source={require("../images/enviar.png")}  style = {styles.imagenLupa}></Image>                                   
+                  <Image source={require("../images/lupa.png")}  style = {styles.imagenLupa}></Image>                                   
                   </TouchableOpacity>
                   </View>
 
 
                  
-
              </View>
 
-              <View style={styles.generalBackground,{height:vh(8),width:vw(100),flexDirection:"row", justifyContent:"space-evenly"}}>
+              <View style={styles.generalBackground,{height:vh(7),width:vw(100),flexDirection:"row", justifyContent:"space-evenly"}}>
                   <View style={styles.botonesCategorias}>
                       <Button color="#3DD598" title="Traer usuarios" onPress={ () => this.props.navigation.navigate("Buscar Contactos")} style={styles.botonesGeneral}></Button>
                   </View>         
              </View>
 
-              <View style={{ height:vh(71), width: vw(100),justifyContent:"space-evenly"}}>
-                   {this.state.activity 
-                     ?<ActivityIndicator color="red" size={60} />
+              <View style={{ height:vh(65), width: vw(100),justifyContent:"space-evenly"}}>
+                   {/* {this.state.activity  */}
+                     {/* ?<ActivityIndicator color="red" size={60} /> */}
                   
-                     :<FlatList 
+                     {/* : */}
+                     <FlatList 
                         data={this.state.users} 
                        keyExtractor = { this.keyExtractor }
                        renderItem={ this.renderItem }
                        numColumns={2}
-                     />
-                   }
+                    />
+                   {/* } */}
               </View>
-
+              
+                   {/* ACA SE RECUPERAN LOS CONTACTOS IMPORTADOS */}
+              <View style={styles.generalBackground,{height:vh(7),width:vw(100),flexDirection:"row", justifyContent:"space-evenly"}}>
+                  <View style={styles.botonesCategorias}>
+                      <Button color="#3DD598" title="Mostrar Contactos" onPress={this.getUserData.bind(this)}></Button>
+                  </View>         
+             </View>
+             
               <View style = {{flex:1, height:"11%", width:vw(100), backgroundColor:"#30444E", borderRadius: "25 25 0 0", boxShadow: "0 1 14 #19282F", flexDirection:"row", justifyContent:"space-evenly", alignItems:'center',}}>
                   <TouchableOpacity onPress={ () => this.props.navigation.navigate("Papelera")} style = {styles.botonTacho}> 
                      <Image source={require("../images/botonTacho.png")} style = {styles.iconoMenu}></Image> 
@@ -341,338 +363,3 @@ async storeData() {
 
 // picture.large
 
-const styles = StyleSheet.create({
-    container:{
-        backgroundColor: "#22343C",
-        flex:1,
-        justifyContent:'center',
-        alignItems: 'center',
-        
-    },
-
-    //HEADER ARI
-    botonesCategorias:{
-        justifyContent:"center",
-      },
-      botonMas:{
-        width:vw(9.5),
-        justifyContent:"center"
-      },
-     
-      filtros:{
-        width:vw(9.5),
-        height:"100%",
-        justifyContent:"center"
-      },
-      botonesGeneral:{
-        height:vw(9.5),
-      },
-      generalBackground:{
-        backgroundColor: "#22343C"
-      },
-    
-      //TARJETAS FRANCO
-    
-    card:{
-        height: vw(75),
-        width: vw(35),
-        marginLeft:vw(10),
-        
-        
-      },
-    
-      nombre:{
-        color: "white",
-        textAlign:"center", 
-        width:"100%",
-        justifyContent:"space-around",
-        fontSize:vw(4)
-      },
-
-      email:{
-        color: "#96A7AF",
-        textAlign:"center",
-        width: vw(35),
-        fontSize:vw(3)
-      },
-      nacimiento:{
-        color: "grey",
-        textAlign:"center",
-        width: vw(35),
-        fontSize:vw(2.5),
-        
-      },
-      vistaFoto:{
-        marginTop: vh(1),
-        alignItems:'center',
-        height:vh(18),
-      },
-      
-      foto:{
-        width: vw(35),
-        height:vw(38),
-        borderRadius: 20,
-      },
-
-      delete:{
-        backgroundColor:'#FF575F',
-        width: "70%",
-        height: "60%",
-        borderRadius:20,
-        justifyContent:'center',
-        marginTop:"7.5%"
-      },
-    
-      textoDelete:{
-        color:"#FFFFFF",
-        textAlign: 'center',
-        fontSize: vw(3),
-      },
-
-      buscador:{
-       
-        justifyContent:"center",
-        alignContent:'center',
-       alignItems:'center',
-
-      },
-
-      buscadorInput:{
-        borderWidth:1,
-        backgroundColor: '#537d8f',
-         borderColor:'#446675',
-         borderRadius:22,
-        width: vw(55),
-        height: vh(4),
-       borderRadius:20,
-       justifyContent:'center',
-      alignContent:'center',
-       alignItems:'center',
-        marginLeft:10,
-        marginRight:10,
-      },
-
-      lupa:{
-        backgroundColor:'#3DD598',
-        width: vw(9.5),
-       height: vw(8),
-        borderRadius:20,
-        justifyContent:'center',
-        alignContent:'center',
-        alignItems:'center',
-        
-
-      },
-
-      viewLupa:{
-        justifyContent:'center',
-        alignContent:'center',
-        alignItems:'center'
-      },
-
-      imagenLupa:{
-          height: vh(2.5),
-          width: vw(3),
-          justifyContent:'center',
-        alignContent:'center',
-        alignItems:'center'
-      },
-
-    
-      //Franco menu
-
-botonHome:{
-    backgroundColor: "#3DD598",
-    borderRadius: 50,
-    width: 60,
-    height: 60,
-    justifyContent: 'center',
-    alignItems:'center',
-  },
-
-  iconoMenu:{
-    width:20,
-    height:20,
-  },
-
-  botonTacho:{
-    width: 60,
-    height: 60,
-    justifyContent: 'center',
-    alignItems:'center',
-    
-
-  },
-
-  botonNosotros:{
-    width: 60,
-    height: 60,
-    justifyContent: 'center',
-    alignItems:'center',
-
-  },
-
-  iconoMenu2:{
-    width:30,
-    height:30,
-    
-  },
-
-  //modal
-
-  modalContainer:{
-    flex:1,
-    justifyContent:'flex-end',
-    alignItems:'center',
- 
-
-  },
-
-  modal:{
-    height:'80%',
-    width:'100%',
-    backgroundColor:'#2d4854',
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius:20,
-    borderTopLeftRadius:20,
-    borderTopRightRadius:20,
- 
-  },
-  
-  modalCancel:{
-    width:30,
-    height:30,
-    borderRadius:100,
-    backgroundColor:'#FF575F',
-    alignItems:'center',
-    marginTop: 10,
-    justifyContent:'center',
-    marginLeft: 320,
-
-
-  },
-
-  modalCancelTexto:{
-    color: 'black',
-    fontWeight:'bold',
-    fontSize:20,
-    
-    
-  },
-
-  // Diseño MODAL
-  modalCard:{
-    
-    width: "100%",
-     flexDirection: 'column',
-    flex:1,
-    
-    
-  },
-
-  modalNombre:{
-    color: "white",
-    fontSize: 30,
-    //textAlign:"center", 
-    marginTop:20,
-    marginBottom:15,
-   
-  },
-  
-  modalMasInfo:{
- 
-  },
-
-  modalMasTexto:{
-    color:'#e3e3e3',
-    fontSize: 18,
-    marginTop:5,
-  },
-  
-
-  modalVistaFoto:{
-
-    alignItems:'center',
-    
-  },
-  
-  modalFoto:{
-    margin: 30,
-    width: 180,
-    height:180,
-    borderRadius: 20,
-  },
-
-  modalBotones:{
-    alignItems: 'flex-end',
-    justifyContent:'space-around',
-    flex:1,
-    flexDirection: 'row',
-    marginBottom: 30,
-   
-   
-    
-  },
-
-  modalDelete:{
-    backgroundColor:'#FF575F',
-    width: 40,
-    height: 40,
-    borderRadius:20,
-    justifyContent:'center',
-    alignContent:'center',
-    alignItems:'center'
-
-  },
-
-  modalGuardado:{
-    backgroundColor:'#3DD598',
-    width: 60,
-    color: "white",
-    fontSize: vw(2),
-    height: 40,
-    borderRadius:5,
-    justifyContent:'center',
-    alignContent:'center',
-    alignItems:'center'
-
-  },
-
-
-  modalEdit:{
-    backgroundColor:'#3DD598',
-    width: 50,
-    height: 40,
-    borderRadius:20,
-    justifyContent:'center',
-    alignContent:'center',
-    alignItems:'center'
-
-  },
-
-  
-
-  modalInput:{
-    borderWidth:1,
-    backgroundColor: '#537d8f',
-    borderColor:'#446675',
-    borderRadius:22,
-    width: 200,
-    height: 40,
-    borderRadius:20,
-    justifyContent:'center',
-    alignContent:'center',
-    alignItems:'center',
-    marginLeft:8,
-  },
-
-  modalMasTextoComentario:{
-    color:'#e3e3e3',
-    fontSize: 18,
-    marginTop:15,
-    fontWeight:'bold',
-  },
-
-
-})

@@ -18,9 +18,9 @@ class Screen_Import extends Component {
 
     componentDidMount() {
         getData()
-      .then( (usuarios) => { 
+      .then( (results) => { 
        console.log(usuarios);
-            this.setState({users: usuarios, })
+            this.setState({users: results})
         })
     }
 

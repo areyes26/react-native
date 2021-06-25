@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Dimensions } from 'react-native';
 import { vw, vh, vmin, vmax } from 'react-native-expo-viewport-units';
+import {styles} from '../style/style';
 import Asyncstorage from '@react-native-async-storage/async-storage';
 import { usersSerched } from '../api/ApiBuscador'
 import {
@@ -17,7 +18,7 @@ import {
     ScrollView,
     Animated,
     Easing
-  
+  ,Alert
     
 } from 'react-native';
 
@@ -124,14 +125,15 @@ topDown = () => {
 
 
 async storeData() {
-  try{
-    const jsonUsers = JSON.stringify(this.state.text);
-    await Asyncstorage.setItem("Comentarios", jsonUsers)
-    console.log("Datos almacenados ")
-  } catch(e) {
-    console.log(e)
-  }
-  }
+    try{
+      const jsonUsers = JSON.stringify(this.state.textHandler);
+      await Asyncstorage.setItem("Users", jsonUsers)
+      console.log("Datos almacenados ")
+      Alert.alert("Se guardaron correctamente los datos ")
+    } catch(e) {
+      console.log(e)
+    }
+    }
   
 
 
@@ -142,12 +144,12 @@ async storeData() {
          <View style={styles.container}>
 
              {/* Espacio Para que se vea bien en iphone 10 */}
-               <View style={styles.generalBackground,{height:"2%", width: "100%",}}></View>
-                <View style={{height:"5%"}}>
+               <View style={styles.generalBackground,{height:"8%", width: "100%",}}></View>
+                <View style={{height:"4%"}}>
                     <Text style={{color:"white", fontSize:vw(5)}}>Ingrese numero de contactos a buscar</Text>
                 </View>
                 {/* ACA VA LA INFO PARA BUSCAR LA CANTIDAD DE USUARIOS DESEADOS EN LA API */}
-                <View style={styles.generalBackground,{flexDirection:"row",height:"8%",width:vw(100), display:"flex", flexWrap:"wrap", justifyContent:"space-evenly"}}>
+                <View style={styles.generalBackground,{flexDirection:"row",height:"6%",width:vw(100), display:"flex", flexWrap:"wrap", justifyContent:"space-evenly"}}>
                   <View style={styles.buscador}>
                     <TextInput 
                     style={styles.buscadorInput}
@@ -161,14 +163,14 @@ async storeData() {
                 {/* ACA SE GUARDA EL NUMERO DE TARJETAS BUSCADAS POR EL USUARIO */}
                   <View style = {styles.viewLupa}>
                     <TouchableOpacity style = {styles.lupa} onPress= { () => this.buscarEnApi(this.state.numeroUsuarios)}>
-                        <Image source={require("../images/enviar.png")} style = {styles.imagenLupa}></Image>                                   
+                        <Image source={require("../images/lupa.png")} style = {styles.imagenLupa}></Image>                                   
                     </TouchableOpacity>
                   </View>
                 
              </View>
 
 
-              <View style={{ height:"66%", width: vw(100),justifyContent:"space-evenly"}}>
+              <View style={{ height:vh(62), width: vw(100),justifyContent:"space-evenly"}}>
                   <FlatList 
                      data={this.state.users} 
                     keyExtractor = { this.keyExtractor }
@@ -179,14 +181,14 @@ async storeData() {
               </View>
 
             {/* BOTON GUARDAR CONTACTOS */}
-            <View style={styles.generalBackground,{height:'8%',width:vw(100),flexDirection:"row", justifyContent:"space-evenly"}}>
+            <View style={styles.generalBackground,{height:vh(8),width:vw(100),flexDirection:"row", justifyContent:"space-evenly"}}>
                   <View style={styles.botonesCategorias}>
-                      <Button color="#3DD598" title="GUARDAR CONTACTOS" onPress={() => storeLocal('localUsers', this.state.users)} style={styles.botonesGeneral}></Button>
+                      <Button color="#3DD598" title="GUARDAR CONTACTOS" onPress={this.storeData.bind(this)}></Button>
                   </View>         
              </View>
             
               {/* FOOTER */}
-              <View style={{height:"11%", width:"100%", backgroundColor:"#30444E", borderRadius: "25 25 0 0", boxShadow: "0 1 14 #19282F", flexDirection:"row", justifyContent:"space-evenly", alignItems:"center"}}>
+              <View style={{height:vh(11), width:"100%", backgroundColor:"#30444E", borderRadius: "25 25 0 0", boxShadow: "0 1 14 #19282F", flexDirection:"row", justifyContent:"space-evenly", alignItems:"center"}}>
             
                 <TouchableOpacity onPress={ () => this.props.navigation.navigate("Home")} style={styles.botonHome}> 
                     <Image source={require("../images/botonHome.png")} style = {styles.iconoMenu} ></Image>
@@ -271,349 +273,3 @@ async storeData() {
     }
 
 }
-
-// picture.large
-
-const styles = StyleSheet.create({
-    container:{
-        backgroundColor: "#22343C",
-        flex:1,
-        justifyContent:'center',
-        alignItems: 'center',
-        
-    },
-
-    //HEADER ARI
-    botonesCategorias:{
-        justifyContent:"center",
-      },
-      botonMas:{
-        width:vw(9.5),
-        justifyContent:"center"
-      },
-     
-      filtros:{
-        width:vw(9.5),
-        height:"100%",
-        justifyContent:"center"
-      },
-      botonesGeneral:{
-        height:vw(9.5),
-      },
-      generalBackground:{
-        backgroundColor: "#22343C"
-      },
-    
-      //TARJETAS FRANCO
-    
-    card:{
-        height: vw(75),
-        width: vw(35),
-        marginLeft:vw(10),
-        
-        
-      },
-      botonHome:{
-        backgroundColor: "#3DD598",
-        borderRadius: 50,
-        width: 60,
-        height: 60,
-        justifyContent: 'center',
-        alignItems:'center',
-      },
-    
-      nombre:{
-        color: "white",
-        textAlign:"center", 
-        width:"100%",
-        justifyContent:"space-around",
-        fontSize:vw(4)
-      },
-
-      email:{
-        color: "#96A7AF",
-        textAlign:"center",
-        width: vw(35),
-        fontSize:vw(3)
-      },
-      nacimiento:{
-        color: "grey",
-        textAlign:"center",
-        width: vw(35),
-        fontSize:vw(2.5),
-        
-      },
-      vistaFoto:{
-        marginTop: vh(1),
-        alignItems:'center',
-        height:vh(18),
-      },
-      
-      foto:{
-        width: vw(35),
-        height:vw(38),
-        borderRadius: 20,
-      },
-
-      delete:{
-        backgroundColor:'#FF575F',
-        width: "70%",
-        height: "60%",
-        borderRadius:20,
-        justifyContent:'center',
-        marginTop:"7.5%"
-      },
-    
-      textoDelete:{
-        color:"#FFFFFF",
-        textAlign: 'center',
-        fontSize: vw(3),
-      },
-
-      buscador:{
-       
-        justifyContent:"center",
-        alignContent:'center',
-       alignItems:'center',
-
-      },
-
-      buscadorInput:{
-        borderWidth:1,
-        backgroundColor: '#537d8f',
-         borderColor:'#446675',
-         borderRadius:22,
-        width: vw(55),
-        height: vh(4),
-       borderRadius:20,
-       justifyContent:'center',
-      alignContent:'center',
-       alignItems:'center',
-        marginLeft:10,
-        marginRight:10,
-      },
-
-      lupa:{
-        backgroundColor:'#3DD598',
-        width: vw(9.5),
-       height: vw(8),
-        borderRadius:20,
-        justifyContent:'center',
-        alignContent:'center',
-        alignItems:'center',
-        
-
-      },
-
-      viewLupa:{
-        justifyContent:'center',
-        alignContent:'center',
-        alignItems:'center'
-      },
-
-      imagenLupa:{
-          height: vh(2.5),
-          width: vw(3),
-          justifyContent:'center',
-        alignContent:'center',
-        alignItems:'center'
-      },
-
-    
-      //Franco menu
-
-botonHome:{
-    backgroundColor: "#3DD598",
-    borderRadius: 50,
-    width: 60,
-    height: 60,
-    justifyContent: 'center',
-    alignItems:'center',
-  },
-
-  iconoMenu:{
-    width:20,
-    height:20,
-  },
-
-  botonTacho:{
-    width: 60,
-    height: 60,
-    justifyContent: 'center',
-    alignItems:'center',
-    
-
-  },
-
-  botonNosotros:{
-    width: 60,
-    height: 60,
-    justifyContent: 'center',
-    alignItems:'center',
-
-  },
-
-  iconoMenu2:{
-    width:30,
-    height:30,
-    
-  },
-
-  //modal
-
-  modalContainer:{
-    flex:1,
-    justifyContent:'flex-end',
-    alignItems:'center',
- 
-
-  },
-
-  modal:{
-    height:'80%',
-    width:'100%',
-    backgroundColor:'#2d4854',
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius:20,
-    borderTopLeftRadius:20,
-    borderTopRightRadius:20,
- 
-  },
-  
-  modalCancel:{
-    width:30,
-    height:30,
-    borderRadius:100,
-    backgroundColor:'#FF575F',
-    alignItems:'center',
-    marginTop: 10,
-    justifyContent:'center',
-    marginLeft: 320,
-
-
-  },
-
-  modalCancelTexto:{
-    color: 'black',
-    fontWeight:'bold',
-    fontSize:20,
-    
-    
-  },
-
-  // Diseño MODAL
-  modalCard:{
-    
-    width: "100%",
-     flexDirection: 'column',
-    flex:1,
-    
-    
-  },
-
-  modalNombre:{
-    color: "white",
-    fontSize: 30,
-    //textAlign:"center", 
-    marginTop:20,
-    marginBottom:15,
-   
-  },
-  
-  modalMasInfo:{
-  
-  },
-
-  modalMasTexto:{
-    color:'#e3e3e3',
-    fontSize: 18,
-    marginTop:5,
-  },
-  
-
-  modalVistaFoto:{
-
-    alignItems:'center',
-    
-  },
-  
-  modalFoto:{
-    margin: 30,
-    width: 180,
-    height:180,
-    borderRadius: 20,
-  },
-
-  modalBotones:{
-    alignItems: 'flex-end',
-    justifyContent:'space-around',
-    flex:1,
-    flexDirection: 'row',
-    marginBottom: 30,
-   
-   
-    
-  },
-
-  modalDelete:{
-    backgroundColor:'#FF575F',
-    width: 40,
-    height: 40,
-    borderRadius:20,
-    justifyContent:'center',
-    alignContent:'center',
-    alignItems:'center'
-
-  },
-
-  modalGuardado:{
-    backgroundColor:'#3DD598',
-    width: 60,
-    color: "white",
-    fontSize: vw(2),
-    height: 40,
-    borderRadius:5,
-    justifyContent:'center',
-    alignContent:'center',
-    alignItems:'center'
-
-  },
-
-
-  modalEdit:{
-    backgroundColor:'#3DD598',
-    width: 50,
-    height: 40,
-    borderRadius:20,
-    justifyContent:'center',
-    alignContent:'center',
-    alignItems:'center'
-
-  },
-
-  
-
-  modalInput:{
-    borderWidth:1,
-    backgroundColor: '#537d8f',
-    borderColor:'#446675',
-    borderRadius:22,
-    width: 200,
-    height: 40,
-    borderRadius:20,
-    justifyContent:'center',
-    alignContent:'center',
-    alignItems:'center',
-    marginLeft:8,
-  },
-
-  modalMasTextoComentario:{
-    color:'#e3e3e3',
-    fontSize: 18,
-    marginTop:15,
-    fontWeight:'bold',
-  },
-
-
-})
