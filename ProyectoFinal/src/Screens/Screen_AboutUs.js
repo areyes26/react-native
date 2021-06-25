@@ -43,7 +43,7 @@ export  class Screen_AboutUS extends Component {
       {/* FOOTER  */}
     <View style = {{height:"11%", width:"100%", backgroundColor:"#30444E", borderRadius: "25 25 0 0", boxShadow: "0 1 14 #19282F", flexDirection:"row", justifyContent:"space-evenly", alignItems:"center"}}>
         <TouchableOpacity onPress={ () => this.props.navigation.navigate("Home")} style = {styles.botonHome}> 
-            <Image source={require("../images/botonHome.png")} style = {styles.iconoMenu} ></Image>
+            <Image source={require("../assets/images/botonHome.png")} style = {styles.iconoMenu} ></Image>
         </TouchableOpacity>
     </View>
        

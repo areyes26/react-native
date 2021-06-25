@@ -57,7 +57,7 @@ const rotB = this.rotation.interpolate({
              backfaceVisibility: false,
              
              }}>
-            <Image source={require("../images/ariPerfil.jpeg")} style = {style.imageUs} ></Image>
+            <Image source={require("../assets/images/ariPerfil.jpeg")} style = {style.imageUs} ></Image>
             <TouchableOpacity  style={{flex: 1}}  onPress={this.topDown}></TouchableOpacity>
           </Animated.View>
         
@@ -80,7 +80,7 @@ const rotB = this.rotation.interpolate({
           justifyContent: 'center',}}  onPress={this.topDown}>
               <Text style={{color:"white", fontSize:vw(6)}}>Ariel Reyes</Text>
               
-              <Image source={require("../images/puntoOnline.png")} style = {{width:vw(2), height:vw(2)}} ></Image> 
+              <Image source={require("../assets/images/puntoOnline.png")} style = {{width:vw(2), height:vw(2)}} ></Image> 
               <Text style={{color:"#96A7AF", fontSize:vw(3.4)}}>  areyesabarca@udesa.edu.ar</Text>
            
               <Text style={{color:"#96A7AF", fontSize:vw(4)}}>CEO</Text>
