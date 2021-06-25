@@ -45,14 +45,7 @@ export class Screen_FlatList extends Component {
     }
 
 
-    componentDidMount() {
-      getData()
-      .then( (usuarios) => { 
-       console.log(usuarios);
-       this.setState({users: usuarios, activity: false});  
-    
-    })
-    }
+
 
     // async getDataFromApi(){
     //   this.setState({activity:true});
@@ -254,12 +247,7 @@ async storeData() {
     alignContent:'center',
     alignItems:'center'}}>
                 
-                 <View style={styles.botonMas}>
-                 <TouchableOpacity styles={styles.botonesGeneral} onPress={() => this.getDataFromApi() }>
-                  <Image source={require("../assets/images/recargar.png")}  style = {styles.imagenLupa}></Image>                                   
-                  </TouchableOpacity>
-                     
-                 </View>
+
 
                   <View style={styles.buscador}>
                   <TextInput style={styles.buscadorInput} onChangeText={ text => this.setState({info:text})}></TextInput>
