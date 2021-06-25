@@ -104,9 +104,7 @@ const styles = StyleSheet.create({
         width: vw(55),
         height: vh(4),
        borderRadius:20,
-       
         marginLeft:20,
-       
       },
 
       lupa:{

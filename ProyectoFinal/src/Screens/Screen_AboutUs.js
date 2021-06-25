@@ -22,27 +22,30 @@ export  class Screen_AboutUS extends Component {
 
     return (
     <View style={{flex:1, backgroundColor: "#22343C"}}>  
-     <View style={styles.generalBackground,{height:"7%", width: "100%"}}></View>
 
+      {/* ESPACIO PARA BARRA IPHONE X */}
+      <View style={styles.generalBackground,{height:"7%", width: "100%"}}></View>
+
+      {/* TITULO SOBRE NOSOTROS */}
      <View style={styles.generalBackground,{height:"8%",flexDirection:"row", width:"100%",alignItems:"center",marginLeft:"9%"}}>
         <View >
          <Text style={{fontSize:vw(14), color:"white",marginHorizontal: 45}}>About Us</Text>
         </View>  
      </View>
-     
+
+     {/* ACA VAN LAS TARJETAS DE NOSOTROS*/}
      <View style={styles.conteinerUs}>
-
-<Card1/>
-<Card2/>
-<Card3/>
+        <Card1/>
+        <Card2/>
+        <Card3/>
      </View>
 
-     <View style = {{height:"11%", width:"100%", backgroundColor:"#30444E", borderRadius: "25 25 0 0", boxShadow: "0 1 14 #19282F", flexDirection:"row", justifyContent:"space-evenly", alignItems:"center"}}>
-        
+      {/* FOOTER  */}
+    <View style = {{height:"11%", width:"100%", backgroundColor:"#30444E", borderRadius: "25 25 0 0", boxShadow: "0 1 14 #19282F", flexDirection:"row", justifyContent:"space-evenly", alignItems:"center"}}>
         <TouchableOpacity onPress={ () => this.props.navigation.navigate("Home")} style = {styles.botonHome}> 
-          <Image source={require("../images/botonHome.png")} style = {styles.iconoMenu} ></Image>
+            <Image source={require("../images/botonHome.png")} style = {styles.iconoMenu} ></Image>
         </TouchableOpacity>
-     </View>
+    </View>
        
        
        
