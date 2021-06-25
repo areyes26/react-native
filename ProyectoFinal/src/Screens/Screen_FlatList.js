@@ -167,12 +167,19 @@ async storeData() {
    } 
 
    async storeData2(idTarjeta) {
+    let resultadosBorrados = this.state.importedUsers.filter((item)=>{
+      return item.login.uuid == idTarjeta;
+    })
+    console.log("Los contactos que se borraron fueron:");
+    console.log(resultadosBorrados);
     let resultados = this.state.importedUsers.filter((item)=>{
       return item.login.uuid !== idTarjeta;
     })
     this.setState({importedUsers:resultados})
-    console.log("Borramos la tarjeta con el ID " + idTarjeta);
-    console.log(this.state.importedUsers);
+    this.setState({deletedUsers:resultadosBorrados})
+    console.log("Los contactos que siguen almacenados son");
+    console.log(resultados);
+    
     try{
       const jsonUsers = JSON.stringify(this.state.deletedUsers);
       await Asyncstorage.setItem("UsuariosBorrados", jsonUsers)
