@@ -138,7 +138,7 @@ async guardarUsuarios() {
                     style={styles.buscadorInput}
                     keyboardType="numeric"
                     placeholder="INGRESE UN NUMERO"
-                    placeholderTextColor="White"
+                  
                     onChangeText={text => this.setState({numeroUsuarios: text})}
                     >
                     </TextInput>
