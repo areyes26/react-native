@@ -182,17 +182,17 @@ async storeData() {
     
     this.state.importedUsers.filter( (usuarios) => {
     if (usuarios.location.country.includes(this.state.info )){
-      let resultado = this.state.users.filter( (users) => {
+      let resultado = this.state.importedUsers.filter( (users) => {
         return importedUsers.location.country.includes(this.state.info )
       }) 
       this.setState({importedUsers: resultado})
     } else if (usuarios.name.first.includes(this.state.info )){
-      let resultado = this.state.users.filter( (users) => {
+      let resultado = this.state.importedUsers.filter( (users) => {
         return users.name.first.includes(this.state.info)
       })
       this.setState({importedUsers: resultado})
     } else if (usuarios.name.last.includes(this.state.info )){
-      let resultado = this.state.users.filter( (users) => {
+      let resultado = this.state.importedUsers.filter( (users) => {
         return users.name.last.includes(this.state.info)
       })  
       this.setState({users:resultado})
