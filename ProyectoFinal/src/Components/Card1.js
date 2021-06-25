@@ -17,14 +17,12 @@ position = new Animated.Value(0);
 rotation = new Animated.Value(0);
 
 topDown = () => {
-  Animated.parallel([ 
+ 
 Animated.timing(this.rotation, {
   toValue: 1,
   duration:1000, 
   useNativeDriver: true
-})
-
-]).start();
+}).start();
 }
 
 
