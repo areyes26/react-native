@@ -124,12 +124,13 @@ topDown = () => {
 
 
 
-async storeData() {
+async guardarUsuarios() {
     try{
-      const jsonUsers = JSON.stringify(this.state.textHandler);
+      const jsonUsers = JSON.stringify(this.state.users);
       await Asyncstorage.setItem("Users", jsonUsers)
-      console.log("Datos almacenados ")
-      Alert.alert("Se guardaron correctamente los datos ")
+      console.log("Datos guardados correctamente")
+      console.log(this.state.users);
+      // Alert.alert("Se guardaron correctamente los datos ")
     } catch(e) {
       console.log(e)
     }
@@ -183,14 +184,14 @@ async storeData() {
             {/* BOTON GUARDAR CONTACTOS */}
             <View style={styles.generalBackground,{height:vh(8),width:vw(100),flexDirection:"row", justifyContent:"space-evenly"}}>
                   <View style={styles.botonesCategorias}>
-                      <Button color="#3DD598" title="GUARDAR CONTACTOS" onPress={this.storeData.bind(this)}></Button>
+                      <Button color="#3DD598" title="GUARDAR CONTACTOS" onPress={this.guardarUsuarios.bind(this)}></Button>
                   </View>         
              </View>
             
               {/* FOOTER */}
               <View style={{height:vh(11), width:"100%", backgroundColor:"#30444E", borderRadius: "25 25 0 0", boxShadow: "0 1 14 #19282F", flexDirection:"row", justifyContent:"space-evenly", alignItems:"center"}}>
             
-                <TouchableOpacity onPress={ () => this.props.navigation.navigate("Home")} style={styles.botonHome}> 
+                <TouchableOpacity onPress={ () => this.props.navigation.navigate("Guardado")} style={styles.botonHome}> 
                     <Image source={require("../images/botonHome.png")} style = {styles.iconoMenu} ></Image>
                 </TouchableOpacity>
             
