@@ -16,7 +16,7 @@ class Guardado extends Component{
 
     async mostrarUsuarios(){
         try{
-            const resultado = await Asyncstorage.getItem('@Favoritos')
+            const resultado = await Asyncstorage.getItem('Users')
             this.setState({importedUsers: JSON.parse(resultado)})
             console.log(resultado);
         }catch(e){

@@ -4,7 +4,6 @@ import { vw, vh, vmin, vmax } from 'react-native-expo-viewport-units';
 import {styles} from '../style/style';
 import Asyncstorage from '@react-native-async-storage/async-storage';
 import { usersSerched } from '../api/ApiBuscador'
-import { getDataFavoritos, storeDataFavoritos, getDataBorrados, storeDataBorrados, getDataRestaurados } from '../../asyncStorage';
 import {
     View,
     Text,
@@ -37,8 +36,6 @@ export class Screen_ContactosDeseados extends Component {
               textHandler: '',
               texto: '',
               toValue: 1.4,
-              usuariosGuardados:[],
-              itemsFavoritos:[]
           }
     }
 
@@ -129,34 +126,17 @@ topDown = () => {
 
 async guardarUsuarios() {
     try{
-      const jsonUsers = JSON.stringify(this.state.usuariosGuardados);
+      const jsonUsers = JSON.stringify(this.state.users);
       await Asyncstorage.setItem("Users", jsonUsers)
       console.log("Datos guardados correctamente")
-      console.log(this.state.usuariosGuardados);
+      console.log(this.state.users);
       // Alert.alert("Se guardaron correctamente los datos ")
     } catch(e) {
       console.log(e)
     }
     }
   
-tarjetasFavoritas (idPersona){
-  console.log(idPersona)
-  let resultados = this.state.users.filter((users) => {
-      return (idPersona !== users.login.uuid)
-  })
 
-  let Favoritos = this.state.users.filter((users) => {
-      return (idPersona == users.login.uuid)
-  })
-
-  let arrayDeFavoritos = [... this.state.itemsFavoritos, ... Favoritos]
-
-  this.setState({users: resultados, itemsFavoritos: arrayDeFavoritos})
-  console.log(this.state.users);
-  alert('Se guardó la tarjeta')
-
-  storeDataFavoritos(arrayDeFavoritos, '@Favoritos')
-}
 
 
     render (){
@@ -204,7 +184,7 @@ tarjetasFavoritas (idPersona){
             {/* BOTON GUARDAR CONTACTOS */}
             <View style={styles.generalBackground,{height:vh(8),width:vw(100),flexDirection:"row", justifyContent:"space-evenly"}}>
                   <View style={styles.botonesCategorias}>
-                      <Button color="#3DD598" title="GUARDAR CONTACTOS" onPress={this.tarjetasFavoritas.bind(this)}></Button>
+                      <Button color="#3DD598" title="GUARDAR CONTACTOS" onPress={this.guardarUsuarios.bind(this)}></Button>
                   </View>         
              </View>
             
