@@ -36,6 +36,7 @@ export class Screen_ContactosDeseados extends Component {
               textHandler: '',
               texto: '',
               toValue: 1.4,
+              
           }
     }
 
@@ -60,19 +61,7 @@ export class Screen_ContactosDeseados extends Component {
     showModal(item){
       this.setState({selectItem: item, showModal: true});
     }
-
-    borrarTarjeta (idTarjeta){
-      let resultados = this.state.users.filter((item)=>{
-        return item.login.uuid !== idTarjeta;
-      })
-      this.setState({users:resultados})
-      // console.log("Borramos la tarjeta con el ID " + idTarjeta);
-      
-      }
-
-     
-
-
+ 
     renderItem = ({item}) => {   
            return ( 
             <TouchableOpacity onPress={() => this.showModal(item)} style={{justifyContent: "space-evenly", flexDirection: "row"}}>
@@ -93,13 +82,6 @@ export class Screen_ContactosDeseados extends Component {
                       <Text style={styles.nacimiento}>{item.dob.date}</Text>
                  </View>
                  
-                 <View style={{alignItems: 'center',height:vw(10), marginTop:vw(1)}}>
-
-                   <TouchableOpacity style = {styles.delete} 
-                   onPress={() => this.borrarTarjeta(item.login.uuid)}> 
-                   <Text style={styles.textoDelete} > Borrar </Text>                    
-                   </TouchableOpacity>
-                </View >
             </View>
             </TouchableOpacity> 
              

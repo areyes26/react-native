@@ -83,7 +83,7 @@ class Screen_DeletedCard extends Component {
 keyExtractor = (item, idx) => idx.toString()
     
 render (){
-  const values = this.state.importedBorrados.map(item =>
+  const values = importedBorrados.map(item =>
     <View style={styles.card}>
               
                  <View style={styles.vistaFoto}> 

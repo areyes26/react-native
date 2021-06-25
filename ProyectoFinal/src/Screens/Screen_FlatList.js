@@ -42,6 +42,7 @@ export class Screen_FlatList extends Component {
               borrados:'',
               importedUsers:[] ,
               deletedUsers:[],
+              resultadosBorrados:[]
           }
     }
 
@@ -154,32 +155,57 @@ async storeData() {
 
 
 
-   async borramosTarjeta(idTarjeta) {
-    let resultadosBorrados = this.state.importedUsers.filter((item)=>{
-      return item.login.uuid == idTarjeta;
-    })
-    console.log("Los contactos que se borraron fueron:");
-    console.log(resultadosBorrados);
-    let resultados = this.state.importedUsers.filter((item)=>{
-      return item.login.uuid !== idTarjeta;
-    })
-    this.setState({importedUsers:resultados})
-    this.setState({deletedUsers: resultadosBorrados.push()})
-    console.log("Los contactos que siguen almacenados son");
-    console.log(resultados);
+  //  async borramosTarjeta(idTarjeta) {
+  //   let resultadoBorrado = this.state.importedUsers.filter((item)=>{
+  //     return item.login.uuid == idTarjeta;
+  //   })
+  //   this.state.resultadosBorrados = this.state.resultadosBorrados.concat(resultadoBorrado)
+  //     console.log("Los contactos que se borraron fueron:");
+  //     console.log(resultadosBorrados);
+  //   let resultados = this.state.importedUsers.filter((item)=>{
+  //     return item.login.uuid !== idTarjeta;
+  //   })
+  //   this.setState({importedUsers:resultados})
+  //   this.setState({deletedUsers: this.state.resultadosBorrados})
+  //   console.log("Los contactos que siguen almacenados son");
+  //   console.log(resultados);
     
-    try{
-      const jsonUsers = JSON.stringify(this.state.deletedUsers);
-      await Asyncstorage.setItem("UsuariosBorrados", jsonUsers)
-      console.log("Datos borrados")
-      // console.log(this.state.deletedUsers)
-    } catch(e) {
-      console.log(e)
-    }
-    }
+  //   try{
+  //     const jsonUsers = JSON.stringify(this.state.deletedUsers);
+  //     await Asyncstorage.setItem("UsuariosBorrados", jsonUsers)
+  //     console.log("Datos borrados")
+  //     // console.log(this.state.deletedUsers)
+  //   } catch(e) {
+  //     console.log(e)
+  //   }
+  //   }
     
 
-    
+    async borramosTarjeta(idTarjeta){
+      try{
+        let resultadoBorrado = this.state.importedUsers.filter((item)=>{
+          return item.login.uuid == idTarjeta;
+        })
+         this.state.resultadosBorrados = this.state.resultadosBorrados.concat(resultadoBorrado)
+         console.log("Los contactos que se borraron fueron:"); 
+         console.log(this.state.resultadosBorrados);
+        let resultados = this.state.importedUsers.filter((item)=>{
+          return item.login.uuid !== idTarjeta;
+        })
+        this.setState({importedUsers:resultados})
+        this.setState({deletedUsers: this.state.resultadosBorrados})
+        console.log("Los contactos que siguen almacenados son");
+        console.log(resultados);
+        await Asyncstorage.setItem("UsuariosBorrados", jsonUsers)
+      
+      }
+      catch(e){}
+    }
+
+
+
+
+
   filtrarTarjetas(){
     
     this.state.importedUsers.filter( (usuarios) => {
