@@ -191,7 +191,7 @@ async guardarUsuarios() {
               {/* FOOTER */}
               <View style={{height:vh(11), width:"100%", backgroundColor:"#30444E", borderRadius: "25 25 0 0", boxShadow: "0 1 14 #19282F", flexDirection:"row", justifyContent:"space-evenly", alignItems:"center"}}>
             
-                <TouchableOpacity onPress={ () => this.props.navigation.navigate("Guardado")} style={styles.botonHome}> 
+                <TouchableOpacity onPress={ () => this.props.navigation.navigate("Home")} style={styles.botonHome}> 
                     <Image source={require("../images/botonHome.png")} style = {styles.iconoMenu} ></Image>
                 </TouchableOpacity>
             
