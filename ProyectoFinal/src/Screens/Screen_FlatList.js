@@ -183,7 +183,7 @@ async storeData() {
     this.state.importedUsers.filter( (usuarios) => {
     if (usuarios.location.country.includes(this.state.info )){
       let resultado = this.state.importedUsers.filter( (users) => {
-        return importedUsers.location.country.includes(this.state.info )
+        return users.location.country.includes(this.state.info )
       }) 
       this.setState({importedUsers: resultado})
     } else if (usuarios.name.first.includes(this.state.info )){
