@@ -103,7 +103,7 @@ export class Screen_FlatList extends Component {
                  <View style={{alignItems: 'center',height:vw(10), marginTop:vw(1)}}>
 
                    <TouchableOpacity style = {styles.delete} 
-                   onPress={() => this.getData2(item.login.uuid)}> 
+                   onPress={() => this.storeData2(item.login.uuid)}> 
                    <Text style={styles.textoDelete} > Borrar </Text>                    
                    </TouchableOpacity>
                 </View >
@@ -151,11 +151,8 @@ async storeData() {
   }
 
 
-  async getData2(idTarjeta) {
-    let resultados = this.state.users.filter((item)=>{
-      return item.login.uuid !== idTarjeta;
-    })
-    this.setState({users:resultados})
+  async getData2() {
+   
     try{
      const resultado = await Asyncstorage.getItem('UsuariosBorrados');
      this.setState({importedBorrados: JSON.stringify(resultado)});
@@ -165,9 +162,13 @@ async storeData() {
    }
    } 
 
-   async storeData2() {
+   async storeData2(idTarjeta) {
+    let resultados = this.state.users.filter((item)=>{
+      return item.login.uuid !== idTarjeta;
+    })
+    this.setState({users:resultados})
     try{
-      const jsonUsers = JSON.stringify(this.state.borrados);
+      const jsonUsers = JSON.stringify(this.state.users);
       await Asyncstorage.setItem("UsuariosBorrados", jsonUsers)
       console.log("Datos importados")
       console.log(this.state.borrados);
