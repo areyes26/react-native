@@ -145,12 +145,12 @@ async guardarUsuarios() {
          <View style={styles.container}>
 
              {/* Espacio Para que se vea bien en iphone 10 */}
-               <View style={styles.generalBackground,{height:"8%", width: "100%",}}></View>
-                <View style={{height:"4%"}}>
+               <View style={styles.generalBackground,{height:vh(8), width: "100%",}}></View>
+                <View style={{height:vh(4)}}>
                     <Text style={{color:"white", fontSize:vw(5)}}>Ingrese numero de contactos a buscar</Text>
                 </View>
                 {/* ACA VA LA INFO PARA BUSCAR LA CANTIDAD DE USUARIOS DESEADOS EN LA API */}
-                <View style={styles.generalBackground,{flexDirection:"row",height:"6%",width:vw(100), display:"flex", flexWrap:"wrap", justifyContent:"space-evenly"}}>
+                <View style={styles.generalBackground,{flexDirection:"row",height:vh(6),width:vw(100), display:"flex", flexWrap:"wrap", justifyContent:"space-evenly"}}>
                   <View style={styles.buscador}>
                     <TextInput 
                     style={styles.buscadorInput}

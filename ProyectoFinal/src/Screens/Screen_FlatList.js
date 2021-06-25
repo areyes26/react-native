@@ -104,7 +104,7 @@ export class Screen_FlatList extends Component {
                  <View style={{alignItems: 'center',height:vw(10), marginTop:vw(1)}}>
 
                    <TouchableOpacity style = {styles.delete} 
-                   onPress={() => this.storeData2(item.login.uuid)}> 
+                   onPress={() => this.borramosTarjeta(item.login.uuid)}> 
                    <Text style={styles.textoDelete} > Borrar </Text>                    
                    </TouchableOpacity>
                 </View >
@@ -152,21 +152,9 @@ async storeData() {
   }
 
 
-  async getData2(idTarjeta) {
-    let resultados = this.state.users.filter((item)=>{
-      return item.login.uuid !== idTarjeta;
-    })
-    this.setState({users:resultados})
-    try{
-     const resultado = await Asyncstorage.getItem('UsuariosBorrados');
-     this.setState({importedBorrados: JSON.stringify(resultado)});
-     console.log("Datos borrados")
-   }catch(e) {
-  console.log(e)
-   }
-   } 
 
-   async storeData2(idTarjeta) {
+
+   async borramosTarjeta(idTarjeta) {
     let resultadosBorrados = this.state.importedUsers.filter((item)=>{
       return item.login.uuid == idTarjeta;
     })
@@ -176,7 +164,7 @@ async storeData() {
       return item.login.uuid !== idTarjeta;
     })
     this.setState({importedUsers:resultados})
-    this.setState({deletedUsers:resultadosBorrados})
+    this.setState({deletedUsers: resultadosBorrados.push()})
     console.log("Los contactos que siguen almacenados son");
     console.log(resultados);
     
@@ -191,6 +179,7 @@ async storeData() {
     }
     
 
+    
   filtrarTarjetas(){
     
     this.state.importedUsers.filter( (usuarios) => {
@@ -222,41 +211,12 @@ async storeData() {
 
     render (){
       const {item} = this.props
-        // const values = this.state.importedUsers.map(item =>
-            
-        //   <TouchableOpacity onPress={() => this.showModal(item)} style={{justifyContent: "space-evenly", flexDirection: "row"}}>
-        //   <View style={styles.card}>
-            
-        //        <View style={styles.vistaFoto}> 
-                
-        //            <Image source={{uri: item.picture.large}}  style={styles.foto}></Image>
-        //        </View>
-        //        <View style={{height:vw(10),width:"100%",fontSize:"100%",justifyContent:"space-around"} }>
-        //             <Text style={styles.nombre}>{item.name.first} {item.name.last}</Text>
-        //        </View>
-        //        <View style={{height:vw(7),width:"100%",fontSize:"100%"} }>
-        //             <Text style={styles.email}>{item.email}</Text>
-        //        </View>
-        //        <View style={{height:vw(7),width:"100%",fontSize:"100%"} }>
-        //             <Text style={{color:"grey", fontSize:vw(3.5), textAlign:"center"}}>Fecha de Nacimiento</Text>
-        //             <Text style={styles.nacimiento}>{item.dob.date}</Text>
-        //        </View>
-               
-        //        <View style={{alignItems: 'center',height:vw(10), marginTop:vw(1)}}>
 
-        //          <TouchableOpacity style = {styles.delete} 
-        //          onPress={() => this.storeData2(item.login.uuid)}> 
-        //          <Text style={styles.textoDelete} > Borrar </Text>                    
-        //          </TouchableOpacity>
-        //       </View >
-        //   </View>
-        //   </TouchableOpacity> 
-        //     )
         return(
          <View style={styles.container}>
                <View style={styles.generalBackground,{height:"2%", width: "100%", marginTop:30,}}></View>
 
-              <View style={styles.generalBackground,{flexDirection:"row",height:vh(8),width:vw(100), display:"flex", flexWrap:"wrap", justifyContent:"space-evenly", justifyContent:'center',
+              <View style={styles.generalBackground,{flexDirection:"row",height:"8",width:vw(100), display:"flex", flexWrap:"wrap", justifyContent:"space-evenly", justifyContent:'center',
     alignContent:'center',
     alignItems:'center'}}>
                 
@@ -276,7 +236,7 @@ async storeData() {
                  
              </View>
 
-              <View style={styles.generalBackground,{height:vh(7),width:vw(100),flexDirection:"row", justifyContent:"space-evenly"}}>
+              <View style={styles.generalBackground,{height:"7%",width:vw(100),flexDirection:"row", justifyContent:"space-evenly"}}>
                   <View style={styles.botonesCategorias}>
                       <Button color="#3DD598" title="Traer usuarios" onPress={ () => this.props.navigation.navigate("Buscar Contactos")} style={styles.botonesGeneral}></Button>
                   </View>         
@@ -296,7 +256,7 @@ async storeData() {
               </View>
               
                    {/* ACA SE RECUPERAN LOS CONTACTOS IMPORTADOS */}
-              <View style={styles.generalBackground,{height:vh(7),width:vw(100),flexDirection:"row", justifyContent:"space-evenly"}}>
+              <View style={styles.generalBackground,{height:"7%",width:vw(100),flexDirection:"row", justifyContent:"space-evenly"}}>
                   <View style={styles.botonesCategorias}>
                       <Button color="#3DD598" title="Mostrar Contactos" onPress={this.mostrarUsuarios.bind(this)}></Button>
                   </View>         
