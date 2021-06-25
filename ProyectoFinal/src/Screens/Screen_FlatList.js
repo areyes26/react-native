@@ -41,6 +41,7 @@ export class Screen_FlatList extends Component {
               importedBorrados: [],
               borrados:'',
               importedUsers:[] ,
+              deletedUsers:[],
           }
     }
 
@@ -67,15 +68,15 @@ export class Screen_FlatList extends Component {
       this.setState({selectItem: item, showModal: true});
     }
 
-    borrarTarjeta (idTarjeta){
-      let resultados = this.state.importedUsers.filter((item)=>{
-        return item.login.uuid !== idTarjeta;
-      })
-      this.setState({users:resultados})
-      // console.log("Borramos la tarjeta con el ID " + idTarjeta);
+    //BORRADO COMUN
+    // borrarTarjeta (idTarjeta){
+      // let resultados = this.state.importedUsers.filter((item)=>{
+      //   return item.login.uuid !== idTarjeta;
+      // })
+      // this.setState({importedUsers:resultados})
+      // // console.log("Borramos la tarjeta con el ID " + idTarjeta);
       
-      }
-
+    //   }
       
 
 
@@ -151,8 +152,11 @@ async storeData() {
   }
 
 
-  async getData2() {
-   
+  async getData2(idTarjeta) {
+    let resultados = this.state.users.filter((item)=>{
+      return item.login.uuid !== idTarjeta;
+    })
+    this.setState({users:resultados})
     try{
      const resultado = await Asyncstorage.getItem('UsuariosBorrados');
      this.setState({importedBorrados: JSON.stringify(resultado)});
@@ -166,17 +170,18 @@ async storeData() {
     let resultados = this.state.importedUsers.filter((item)=>{
       return item.login.uuid !== idTarjeta;
     })
-    this.setState({users:resultados})
+    this.setState({importedUsers:resultados})
+    console.log("Borramos la tarjeta con el ID " + idTarjeta);
+    console.log(this.state.importedUsers);
     try{
-      const jsonUsers = JSON.stringify(this.state.importedUsers);
+      const jsonUsers = JSON.stringify(this.state.deletedUsers);
       await Asyncstorage.setItem("UsuariosBorrados", jsonUsers)
-      console.log("Datos importados")
-      console.log(this.state.borrados);
+      console.log("Datos borrados")
+      // console.log(this.state.deletedUsers)
     } catch(e) {
       console.log(e)
     }
     }
-
     
 
   filtrarTarjetas(){
