@@ -40,6 +40,7 @@ export class Screen_FlatList extends Component {
               importedcomentarios: [],
               importedBorrados: [],
               borrados:'',
+              importedUsers:[] ,
           }
     }
 
@@ -59,16 +60,15 @@ export class Screen_FlatList extends Component {
       console.log(usuarios);
       this.setState({users: usuarios, activity: false});
     }
-    async getUserData() {
-      try{
-       const resultado = await Asyncstorage.getItem('Users');
-       this.setState({users: JSON.parse(resultado)});
-       console.log("Datos de los contactos recuperados")
-       console.log(this.state.users)
-     }catch(e) {
-    console.log(e)
-     }
-     } 
+  async mostrarUsuarios(){
+        try{
+            const resultado = await Asyncstorage.getItem('Users')
+            this.setState({importedUsers: JSON.parse(resultado)})
+            console.log(resultado);
+        }catch(e){
+            console.log(e);
+        }
+    }
      
     showModal(item){
       this.setState({selectItem: item, showModal: true});
@@ -84,6 +84,7 @@ export class Screen_FlatList extends Component {
       }
 
       
+
 
 
     renderItem = ({item}) => {   
@@ -214,7 +215,37 @@ async storeData() {
 
 
     render (){
-      
+      const {item} = this.props
+        const values = this.state.importedUsers.map(item =>
+            
+          <TouchableOpacity onPress={() => this.showModal(item)} style={{justifyContent: "space-evenly", flexDirection: "row"}}>
+          <View style={styles.card}>
+            
+               <View style={styles.vistaFoto}> 
+                
+                   <Image source={{uri: item.picture.large}}  style={styles.foto}></Image>
+               </View>
+               <View style={{height:vw(10),width:"100%",fontSize:"100%",justifyContent:"space-around"} }>
+                    <Text style={styles.nombre}>{item.name.first} {item.name.last}</Text>
+               </View>
+               <View style={{height:vw(7),width:"100%",fontSize:"100%"} }>
+                    <Text style={styles.email}>{item.email}</Text>
+               </View>
+               <View style={{height:vw(7),width:"100%",fontSize:"100%"} }>
+                    <Text style={{color:"grey", fontSize:vw(3.5), textAlign:"center"}}>Fecha de Nacimiento</Text>
+                    <Text style={styles.nacimiento}>{item.dob.date}</Text>
+               </View>
+               
+               <View style={{alignItems: 'center',height:vw(10), marginTop:vw(1)}}>
+
+                 <TouchableOpacity style = {styles.delete} 
+                 onPress={() => this.getData2(item.login.uuid)}> 
+                 <Text style={styles.textoDelete} > Borrar </Text>                    
+                 </TouchableOpacity>
+              </View >
+          </View>
+          </TouchableOpacity> 
+            )
         return(
          <View style={styles.container}>
                <View style={styles.generalBackground,{height:"2%", width: "100%", marginTop:30,}}></View>
@@ -251,23 +282,26 @@ async storeData() {
              </View>
 
               <View style={{ height:vh(65), width: vw(100),justifyContent:"space-evenly"}}>
+                
+                <ScrollView>{values}</ScrollView>
                    {/* {this.state.activity  */}
                      {/* ?<ActivityIndicator color="red" size={60} /> */}
                   
                      {/* : */}
-                     <FlatList 
+                     {/* <FlatList 
                         data={this.state.users} 
                        keyExtractor = { this.keyExtractor }
                        renderItem={ this.renderItem }
                        numColumns={2}
-                    />
+                    /> */}
                    {/* } */}
+                   
               </View>
               
                    {/* ACA SE RECUPERAN LOS CONTACTOS IMPORTADOS */}
               <View style={styles.generalBackground,{height:vh(7),width:vw(100),flexDirection:"row", justifyContent:"space-evenly"}}>
                   <View style={styles.botonesCategorias}>
-                      <Button color="#3DD598" title="Mostrar Contactos" onPress={this.getUserData.bind(this)}></Button>
+                      <Button color="#3DD598" title="Mostrar Contactos" onPress={this.mostrarUsuarios.bind(this)}></Button>
                   </View>         
              </View>
              
