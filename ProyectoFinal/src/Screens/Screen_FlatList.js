@@ -182,27 +182,28 @@ async storeData() {
     }
     }
 
-
+    
 
   filtrarTarjetas(){
   
 
-    this.state.users.filter( (usuarios) => {
+    this.state.importedUsers.filter( (usuarios) => {
     if (usuarios.location.country.includes(this.state.info )){
-      let resultado = this.state.users.filter( (users) => {
+      let resultado = this.state.importedUsers.filter( (users) => {
         return users.location.country.includes(this.state.info )
       }) 
       this.setState({users: resultado})
     } else if (usuarios.name.first.includes(this.state.info )){
-      let resultado = this.state.users.filter( (users) => {
+      let resultado = this.state.importedUsers.filter( (users) => {
         return users.name.first.includes(this.state.info)
       })
       this.setState({users: resultado})
     } else if (usuarios.name.last.includes(this.state.info )){
-      let resultado = this.state.users.filter( (users) => {
+      let resultado = this.state.importedUsers.filter( (users) => {
         return users.name.last.includes(this.state.info)
       })  
       this.setState({users:resultado})
+      console.log(users)
     } 
   })
   }
