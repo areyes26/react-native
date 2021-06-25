@@ -254,7 +254,12 @@ async storeData() {
     alignContent:'center',
     alignItems:'center'}}>
                 
-
+                 <View style={styles.botonMas}>
+                 <TouchableOpacity styles={styles.botonesGeneral} onPress={() => this.getDataFromApi() }>
+                  <Image source={require("../assets/images/recargar.png")}  style = {styles.imagenLupa}></Image>                                   
+                  </TouchableOpacity>
+                     
+                 </View>
 
                   <View style={styles.buscador}>
                   <TextInput style={styles.buscadorInput} onChangeText={ text => this.setState({info:text})}></TextInput>
@@ -262,7 +267,7 @@ async storeData() {
 
                   <View style = {styles.viewLupa}>
                   <TouchableOpacity style = {styles.lupa} onPress={this.filtrarTarjetas.bind(this)}>
-                  <Image source={require("../images/lupa.png")}  style = {styles.imagenLupa}></Image>                                   
+                  <Image source={require("../assets/images/lupa.png")}  style = {styles.imagenLupa}></Image>                                   
                   </TouchableOpacity>
                   </View>
 
@@ -298,13 +303,13 @@ async storeData() {
              
               <View style = {{flex:1, height:"11%", width:vw(100), backgroundColor:"#30444E", borderRadius: "25 25 0 0", boxShadow: "0 1 14 #19282F", flexDirection:"row", justifyContent:"space-evenly", alignItems:'center',}}>
                   <TouchableOpacity onPress={ () => this.props.navigation.navigate("Papelera")} style = {styles.botonTacho}> 
-                     <Image source={require("../images/botonTacho.png")} style = {styles.iconoMenu}></Image> 
+                     <Image source={require("../assets/images/botonTacho.png")} style = {styles.iconoMenu}></Image> 
                  </TouchableOpacity>
                  <TouchableOpacity style = {styles.botonHome}> 
-                     <Image source={require("../images/botonHome.png")} style = {styles.iconoMenu} ></Image>
+                     <Image source={require("../assets/images/botonHome.png")} style = {styles.iconoMenu} ></Image>
                  </TouchableOpacity>
                  <TouchableOpacity onPress={ () => this.props.navigation.navigate("About Us")}  style = {styles.botonNosotros}> 
-                     <Image source={require("../images/botonNosotros.png")} style = {styles.iconoMenu2}></Image> 
+                     <Image source={require("../assets/images/botonNosotros.png")} style = {styles.iconoMenu2}></Image> 
                  </TouchableOpacity>
               </View>
               
@@ -364,12 +369,12 @@ async storeData() {
                   </View>
                   <View >
                   <TouchableOpacity style = {styles.modalEdit} onPress={this.getData1.bind(this)}>  
-                  <Image source={require("../images/enviar.png")}></Image>                                   
+                  <Image source={require("../assets/images/enviar.png")}></Image>                                   
                   </TouchableOpacity>
                   </View>
 
                   <TouchableOpacity style = {styles.modalDelete} onPress={() => this.deleteContact(this.state.selectItem.login.uuid)}> 
-                  <Image source={require("../images/tachoblanco.png")}  ></Image>                 
+                  <Image source={require("../assets/images/tachoblanco.png")}  ></Image>                 
                   </TouchableOpacity>
                   </View >
 
