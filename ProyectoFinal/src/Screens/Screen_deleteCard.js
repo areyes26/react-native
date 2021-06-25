@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Asyncstorage from '@react-native-async-storage/async-storage';
-import { getLocal } from '../Screens/Screen_FlatList'
+import { getLocal } from './Screen_FlatList'
 import { Alert, Dimensions } from 'react-native';
 import { vw, vh, vmin, vmax } from 'react-native-expo-viewport-units';
 import {styles} from '../style/style';
@@ -80,7 +80,7 @@ render (){
 {values}
 <View >
                   <TouchableOpacity style = {styles.modalEdit} onPress={this.storeData.bind(this)}>  
-                  <Image source={require("../images/enviar.png")}></Image>                                   
+                  <Image source={require("../assets/images/enviar.png")}></Image>                                   
                   </TouchableOpacity>
                   </View>
 

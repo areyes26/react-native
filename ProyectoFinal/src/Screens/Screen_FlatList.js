@@ -30,7 +30,7 @@ export class Screen_FlatList extends Component {
     constructor (){
           super();
           this.state = {
-              users: [],
+              
               activity: true,
               showModal: false,
               selectItme: null,
@@ -54,12 +54,12 @@ export class Screen_FlatList extends Component {
     })
     }
 
-    async getDataFromApi(){
-      this.setState({activity:true});
-      let usuarios = await getData();
-      console.log(usuarios);
-      this.setState({users: usuarios, activity: false});
-    }
+    // async getDataFromApi(){
+    //   this.setState({activity:true});
+    //   let usuarios = await getData();
+    //   console.log(usuarios);
+    //   this.setState({users: usuarios, activity: false});
+    // }
   async mostrarUsuarios(){
         try{
             const resultado = await Asyncstorage.getItem('Users')
@@ -177,6 +177,7 @@ async storeData() {
       const jsonUsers = JSON.stringify(this.state.borrados);
       await Asyncstorage.setItem("UsuariosBorrados", jsonUsers)
       console.log("Datos importados")
+      console.log(this.state.borrados);
     } catch(e) {
       console.log(e)
     }
@@ -185,25 +186,23 @@ async storeData() {
     
 
   filtrarTarjetas(){
-  
-
+    
     this.state.importedUsers.filter( (usuarios) => {
     if (usuarios.location.country.includes(this.state.info )){
-      let resultado = this.state.importedUsers.filter( (users) => {
-        return users.location.country.includes(this.state.info )
+      let resultado = this.state.users.filter( (users) => {
+        return importedUsers.location.country.includes(this.state.info )
       }) 
-      this.setState({users: resultado})
+      this.setState({importedUsers: resultado})
     } else if (usuarios.name.first.includes(this.state.info )){
-      let resultado = this.state.importedUsers.filter( (users) => {
+      let resultado = this.state.users.filter( (users) => {
         return users.name.first.includes(this.state.info)
       })
-      this.setState({users: resultado})
+      this.setState({importedUsers: resultado})
     } else if (usuarios.name.last.includes(this.state.info )){
-      let resultado = this.state.importedUsers.filter( (users) => {
+      let resultado = this.state.users.filter( (users) => {
         return users.name.last.includes(this.state.info)
       })  
       this.setState({users:resultado})
-      console.log(users)
     } 
   })
   }
@@ -217,36 +216,36 @@ async storeData() {
 
     render (){
       const {item} = this.props
-        const values = this.state.importedUsers.map(item =>
+        // const values = this.state.importedUsers.map(item =>
             
-          <TouchableOpacity onPress={() => this.showModal(item)} style={{justifyContent: "space-evenly", flexDirection: "row"}}>
-          <View style={styles.card}>
+        //   <TouchableOpacity onPress={() => this.showModal(item)} style={{justifyContent: "space-evenly", flexDirection: "row"}}>
+        //   <View style={styles.card}>
             
-               <View style={styles.vistaFoto}> 
+        //        <View style={styles.vistaFoto}> 
                 
-                   <Image source={{uri: item.picture.large}}  style={styles.foto}></Image>
-               </View>
-               <View style={{height:vw(10),width:"100%",fontSize:"100%",justifyContent:"space-around"} }>
-                    <Text style={styles.nombre}>{item.name.first} {item.name.last}</Text>
-               </View>
-               <View style={{height:vw(7),width:"100%",fontSize:"100%"} }>
-                    <Text style={styles.email}>{item.email}</Text>
-               </View>
-               <View style={{height:vw(7),width:"100%",fontSize:"100%"} }>
-                    <Text style={{color:"grey", fontSize:vw(3.5), textAlign:"center"}}>Fecha de Nacimiento</Text>
-                    <Text style={styles.nacimiento}>{item.dob.date}</Text>
-               </View>
+        //            <Image source={{uri: item.picture.large}}  style={styles.foto}></Image>
+        //        </View>
+        //        <View style={{height:vw(10),width:"100%",fontSize:"100%",justifyContent:"space-around"} }>
+        //             <Text style={styles.nombre}>{item.name.first} {item.name.last}</Text>
+        //        </View>
+        //        <View style={{height:vw(7),width:"100%",fontSize:"100%"} }>
+        //             <Text style={styles.email}>{item.email}</Text>
+        //        </View>
+        //        <View style={{height:vw(7),width:"100%",fontSize:"100%"} }>
+        //             <Text style={{color:"grey", fontSize:vw(3.5), textAlign:"center"}}>Fecha de Nacimiento</Text>
+        //             <Text style={styles.nacimiento}>{item.dob.date}</Text>
+        //        </View>
                
-               <View style={{alignItems: 'center',height:vw(10), marginTop:vw(1)}}>
+        //        <View style={{alignItems: 'center',height:vw(10), marginTop:vw(1)}}>
 
-                 <TouchableOpacity style = {styles.delete} 
-                 onPress={() => this.getData2(item.login.uuid)}> 
-                 <Text style={styles.textoDelete} > Borrar </Text>                    
-                 </TouchableOpacity>
-              </View >
-          </View>
-          </TouchableOpacity> 
-            )
+        //          <TouchableOpacity style = {styles.delete} 
+        //          onPress={() => this.storeData2(item.login.uuid)}> 
+        //          <Text style={styles.textoDelete} > Borrar </Text>                    
+        //          </TouchableOpacity>
+        //       </View >
+        //   </View>
+        //   </TouchableOpacity> 
+        //     )
         return(
          <View style={styles.container}>
                <View style={styles.generalBackground,{height:"2%", width: "100%", marginTop:30,}}></View>
@@ -257,7 +256,7 @@ async storeData() {
                 
                  <View style={styles.botonMas}>
                  <TouchableOpacity styles={styles.botonesGeneral} onPress={() => this.getDataFromApi() }>
-                  <Image source={require("../images/recargar.png")}  style = {styles.imagenLupa}></Image>                                   
+                  <Image source={require("../assets/images/recargar.png")}  style = {styles.imagenLupa}></Image>                                   
                   </TouchableOpacity>
                      
                  </View>
@@ -268,7 +267,7 @@ async storeData() {
 
                   <View style = {styles.viewLupa}>
                   <TouchableOpacity style = {styles.lupa} onPress={this.filtrarTarjetas.bind(this)}>
-                  <Image source={require("../images/lupa.png")}  style = {styles.imagenLupa}></Image>                                   
+                  <Image source={require("../assets/images/lupa.png")}  style = {styles.imagenLupa}></Image>                                   
                   </TouchableOpacity>
                   </View>
 
@@ -284,18 +283,14 @@ async storeData() {
 
               <View style={{ height:vh(65), width: vw(100),justifyContent:"space-evenly"}}>
                 
-                <ScrollView>{values}</ScrollView>
-                   {/* {this.state.activity  */}
-                     {/* ?<ActivityIndicator color="red" size={60} /> */}
-                  
-                     {/* : */}
-                     {/* <FlatList 
-                        data={this.state.users} 
+
+                     <FlatList 
+                        data={this.state.importedUsers} 
                        keyExtractor = { this.keyExtractor }
                        renderItem={ this.renderItem }
                        numColumns={2}
-                    /> */}
-                   {/* } */}
+                    /> 
+
                    
               </View>
               
@@ -308,13 +303,13 @@ async storeData() {
              
               <View style = {{flex:1, height:"11%", width:vw(100), backgroundColor:"#30444E", borderRadius: "25 25 0 0", boxShadow: "0 1 14 #19282F", flexDirection:"row", justifyContent:"space-evenly", alignItems:'center',}}>
                   <TouchableOpacity onPress={ () => this.props.navigation.navigate("Papelera")} style = {styles.botonTacho}> 
-                     <Image source={require("../images/botonTacho.png")} style = {styles.iconoMenu}></Image> 
+                     <Image source={require("../assets/images/botonTacho.png")} style = {styles.iconoMenu}></Image> 
                  </TouchableOpacity>
                  <TouchableOpacity style = {styles.botonHome}> 
-                     <Image source={require("../images/botonHome.png")} style = {styles.iconoMenu} ></Image>
+                     <Image source={require("../assets/images/botonHome.png")} style = {styles.iconoMenu} ></Image>
                  </TouchableOpacity>
                  <TouchableOpacity onPress={ () => this.props.navigation.navigate("About Us")}  style = {styles.botonNosotros}> 
-                     <Image source={require("../images/botonNosotros.png")} style = {styles.iconoMenu2}></Image> 
+                     <Image source={require("../assets/images/botonNosotros.png")} style = {styles.iconoMenu2}></Image> 
                  </TouchableOpacity>
               </View>
               
@@ -374,12 +369,12 @@ async storeData() {
                   </View>
                   <View >
                   <TouchableOpacity style = {styles.modalEdit} onPress={this.getData1.bind(this)}>  
-                  <Image source={require("../images/enviar.png")}></Image>                                   
+                  <Image source={require("../assets/images/enviar.png")}></Image>                                   
                   </TouchableOpacity>
                   </View>
 
                   <TouchableOpacity style = {styles.modalDelete} onPress={() => this.deleteContact(this.state.selectItem.login.uuid)}> 
-                  <Image source={require("../images/tachoblanco.png")}  ></Image>                 
+                  <Image source={require("../assets/images/tachoblanco.png")}  ></Image>                 
                   </TouchableOpacity>
                   </View >
 
