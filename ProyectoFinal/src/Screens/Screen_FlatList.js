@@ -206,13 +206,17 @@ async storeData() {
       
         return(
          <View style={styles.container}>
-               <View style={styles.generalBackground,{height:"2%", width: "100%",}}></View>
+               <View style={styles.generalBackground,{height:"2%", width: "100%", marginTop:30,}}></View>
 
-              <View style={styles.generalBackground,{flexDirection:"row",height:vh(8),width:vw(100), display:"flex", flexWrap:"wrap", justifyContent:"space-evenly"}}>
+              <View style={styles.generalBackground,{flexDirection:"row",height:vh(8),width:vw(100), display:"flex", flexWrap:"wrap", justifyContent:"space-evenly", justifyContent:'center',
+    alignContent:'center',
+    alignItems:'center'}}>
                 
                  <View style={styles.botonMas}>
-                     <Button color="#3DD598" title="+" styles={styles.botonesGeneral}
-                     onPress={() => this.getDataFromApi() }/>
+                 <TouchableOpacity styles={styles.botonesGeneral} onPress={() => this.getDataFromApi() }>
+                  <Image source={require("../images/recargar.png")}  style = {styles.imagenLupa}></Image>                                   
+                  </TouchableOpacity>
+                     
                  </View>
 
                   <View style={styles.buscador}>
@@ -221,15 +225,12 @@ async storeData() {
 
                   <View style = {styles.viewLupa}>
                   <TouchableOpacity style = {styles.lupa} onPress={this.filtrarTarjetas.bind(this)}>
-                  <Image source={require("../images/enviar.png")}  style = {styles.imagenLupa}></Image>                                   
+                  <Image source={require("../images/lupa.png")}  style = {styles.imagenLupa}></Image>                                   
                   </TouchableOpacity>
                   </View>
 
 
-                 <View style={styles.filtros}>
-                     <Button color="#3DD598" title="f" style={styles.botonesGeneral}></Button>
-                 </View>  
-
+                 
              </View>
 
               <View style={styles.generalBackground,{height:vh(8),width:vw(100),flexDirection:"row", justifyContent:"space-evenly"}}>
@@ -447,21 +448,20 @@ const styles = StyleSheet.create({
         width: vw(55),
         height: vh(4),
        borderRadius:20,
-       justifyContent:'center',
-      alignContent:'center',
-       alignItems:'center',
-        marginLeft:10,
-        marginRight:10,
+       
+        marginLeft:20,
+       
       },
 
       lupa:{
         backgroundColor:'#3DD598',
-        width: vw(9.5),
+        width: vw(11),
        height: vw(8),
         borderRadius:20,
         justifyContent:'center',
         alignContent:'center',
         alignItems:'center',
+        marginLeft:10,
         
 
       },
@@ -474,7 +474,7 @@ const styles = StyleSheet.create({
 
       imagenLupa:{
           height: vh(2.5),
-          width: vw(3),
+          width: vw(4),
           justifyContent:'center',
         alignContent:'center',
         alignItems:'center'
@@ -675,6 +675,8 @@ botonHome:{
     marginTop:15,
     fontWeight:'bold',
   },
+
+
 
 
 })

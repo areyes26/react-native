@@ -161,7 +161,7 @@ async storeData() {
                 {/* ACA SE GUARDA EL NUMERO DE TARJETAS BUSCADAS POR EL USUARIO */}
                   <View style = {styles.viewLupa}>
                     <TouchableOpacity style = {styles.lupa} onPress= { () => this.buscarEnApi(this.state.numeroUsuarios)}>
-                        <Image source={require("../images/enviar.png")} style = {styles.imagenLupa}></Image>                                   
+                        <Image source={require("../images/lupa.png")} style = {styles.imagenLupa}></Image>                                   
                     </TouchableOpacity>
                   </View>
                 
