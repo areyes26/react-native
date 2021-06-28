@@ -223,7 +223,7 @@ async storeData() {
       let resultado = this.state.importedUsers.filter( (users) => {
         return users.name.last.includes(this.state.info)
       })  
-      this.setState({users:resultado})
+      this.setState({importedUsers:resultado})
     } 
   })
   }
