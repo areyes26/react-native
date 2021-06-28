@@ -242,7 +242,7 @@ async storeData() {
          <View style={styles.container}>
                <View style={styles.generalBackground,{height:"2%", width: "100%", marginTop:30,}}></View>
 
-              <View style={styles.generalBackground,{flexDirection:"row",height:"8",width:vw(100), display:"flex", flexWrap:"wrap", justifyContent:"space-evenly", justifyContent:'center',
+              <View style={styles.generalBackground,{flexDirection:"row",height:"8%",width:vw(100), display:"flex", flexWrap:"wrap", justifyContent:"space-evenly", justifyContent:'center',
     alignContent:'center',
     alignItems:'center'}}>
                 
