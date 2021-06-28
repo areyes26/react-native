@@ -179,81 +179,8 @@ async guardarUsuarios() {
 
                 </TouchableOpacity>
             
-              </View>
-              
-              <Modal visible={this.state.showModal} animationType='slide' transparent={true}>
-                <View style={styles.modalContainer}>
-                  <View style={styles.modal}>
-                  { this.state.selectItem  &&
-                  
-                  <>
-                  <View style={styles.modalCancel}>
-                    <Text onPress={() => this.setState({showModal:false})} style={styles.modalCancelTexto}>
-                        X
-                    </Text>
-                  </View> 
-                  <View style={styles.modalCard}>
-                  <TouchableOpacity  style={{}}  onPress={this.topDown}>
-                    <Animated.View style={{ alignItems:'center', transform: [{scale: this.position}]}}> 
-               
-                  <Image source={{uri: this.state.selectItem.picture.large}}  style={styles.modalFoto}></Image>
-                 
-                  </Animated.View>
-                  
-                 </TouchableOpacity>
-
-
-                   <View style={{flex: 1, alignItems: "center" } }>
-                   <Text style={styles.modalNombre}>{this.state.selectItem.name.first} {this.state.selectItem.name.last}</Text>
-                   <View style={styles.modalMasInfo}>
-                   <Text style={styles.modalMasTexto}>Email: {this.state.selectItem.email} </Text>
-                   <Text style={styles.modalMasTexto}>Nacimiento: {this.state.selectItem.dob.date}</Text>
-                    
-                   <Text style={styles.modalMasTexto}>País: {this.state.selectItem.location.country}</Text>
-                   <Text style={styles.modalMasTexto}>Ciudad/Estado: {this.state.selectItem.location.city} - {this.state.selectItem.location.state}</Text>
-                   <Text style={styles.modalMasTexto}>Dirección: {this.state.selectItem.location.street.name} {this.state.selectItem.location.street.number}</Text>
-                   <Text style={styles.modalMasTexto}>Codigo postal: {this.state.selectItem.location.postcode}</Text>
-                   <Text style={styles.modalMasTexto}>Fecha de registro: {this.state.selectItem.registered.date}</Text>
-                   <Text style={styles.modalMasTexto}>Telefono: {this.state.selectItem.phone}</Text>
-                   <Text style={styles.modalMasTexto}>Celular: {this.state.selectItem.cell}</Text>
-
-                   <View style={{height:100}}>
-                   <ScrollView style={{height:100, width:'90%'}}>
-                   <Text style={styles.modalMasTextoComentario}>Coment: {this.state.text}  </Text>
-                  </ScrollView>
-                  </View>
-                   </View>
-                  </View>
-              
-                 <View style={styles.modalBotones}>
-
-                  <View>
-                  <TextInput style={styles.modalInput} onChangeText={text => this.setState({textHandler: text})}></TextInput>
-                  </View>
-                  <View >
-                  <TouchableOpacity style = {styles.modalEdit} onPress={() => this.setState({text: this.state.textHandler})}>  
-                  <Image source={require("../assets/images/enviar.png")}></Image>                                   
-                  </TouchableOpacity>
-                  </View>
-                  <View >
-                  <TouchableOpacity style = {styles.modalGuardado} onPress={this.storeData.bind(this)}>  
-                  <Text>Guardar datos</Text>                                 
-                  </TouchableOpacity>
-                  </View>
-                  <TouchableOpacity style = {styles.modalDelete} onPress={() => this.borrarTarjeta(this.state.selectItem.login.uuid)}> 
-                  <Image source={require("../assets/images/tachoblanco.png")}  ></Image>                 
-                  </TouchableOpacity>
-                  </View >
-
-                 </View>
-                  
-                  </>
-                   }
-                   </View>
-                </View>
-                
-              </Modal>
-         </View>
+           </View>
+           </View>
         )
     }
 
