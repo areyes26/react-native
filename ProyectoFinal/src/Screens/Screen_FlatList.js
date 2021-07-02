@@ -58,7 +58,9 @@ export class Screen_FlatList extends Component {
   async mostrarUsuarios(){
         try{
             const resultado = await Asyncstorage.getItem('Users')
-            this.setState({importedUsers: JSON.parse(resultado)})
+            const jsonUsers = JSON.parse(resultado)
+            console.log("Los contactos que se pasaron a objeto son" + resultado);
+            this.setState({importedUsers: this.state.importedUsers.concat(jsonUsers)})
             console.log(resultado);
         }catch(e){
             console.log(e);
