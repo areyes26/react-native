@@ -36,7 +36,8 @@ class Screen_DeletedCard extends Component {
      try{
        const resultado = await Asyncstorage.getItem('UsuariosBorrados');
        if(resultado!== null){
-          this.setState({importedBorrados: JSON.parse(resultado)});
+          const jsonParsed = JSON.parse(resultado)
+          this.setState({importedBorrados:jsonParsed})
           console.log("Los contactos en papelera son")
           console.log(resultado);
        }else{
