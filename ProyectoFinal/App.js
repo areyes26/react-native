@@ -35,13 +35,14 @@ export default class App extends Component {
       <NavigationContainer>
         <Stack.Navigator screenOptions={{headerShown: false}}>
         
-          <Stack.Screen name="Home" component={Screen_FlatList}  />
+          <Stack.Screen name="Home" component={Screen_FlatList}  /> 
           <Stack.Screen name="About Us" component={Screen_AboutUS} />
           <Stack.Screen name="View Imported Card" component={Screen_ViewImportedCard} />
           <Stack.Screen name="Import" component={Screen_Import} />
           <Stack.Screen name="Papelera" component={Screen_DeletedCard} />
           <Stack.Screen name="Guardado" component={Guardado}  />
           <Stack.Screen name="Buscar Contactos" component={Screen_ContactosDeseados} />
+          
         </Stack.Navigator>
       </NavigationContainer>
     );

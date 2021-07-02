@@ -152,57 +152,55 @@ async storeData() {
   }
   }
 
-
-
-
-  //  async borramosTarjeta(idTarjeta) {
-  //   let resultadoBorrado = this.state.importedUsers.filter((item)=>{
-  //     return item.login.uuid == idTarjeta;
-  //   })
-  //   this.state.resultadosBorrados = this.state.resultadosBorrados.concat(resultadoBorrado)
-  //     console.log("Los contactos que se borraron fueron:");
-  //     console.log(resultadosBorrados);
-  //   let resultados = this.state.importedUsers.filter((item)=>{
-  //     return item.login.uuid !== idTarjeta;
-  //   })
-  //   this.setState({importedUsers:resultados})
-  //   this.setState({deletedUsers: this.state.resultadosBorrados})
-  //   console.log("Los contactos que siguen almacenados son");
-  //   console.log(resultados);
-    
-  //   try{
-  //     const jsonUsers = JSON.stringify(this.state.deletedUsers);
-  //     await Asyncstorage.setItem("UsuariosBorrados", jsonUsers)
-  //     console.log("Datos borrados")
-  //     // console.log(this.state.deletedUsers)
-  //   } catch(e) {
-  //     console.log(e)
-  //   }
-  //   }
     
 
-    async borramosTarjeta(idTarjeta){
-      try{
-        let resultadoBorrado = this.state.importedUsers.filter((item)=>{
-          return item.login.uuid == idTarjeta;
-        })
-         this.state.resultadosBorrados = this.state.resultadosBorrados.concat(resultadoBorrado)
-         console.log("Los contactos que se borraron fueron:"); 
-         console.log(this.state.resultadosBorrados);
-        let resultados = this.state.importedUsers.filter((item)=>{
-          return item.login.uuid !== idTarjeta;
-        })
-        this.setState({importedUsers:resultados})
-        this.setState({deletedUsers: this.state.resultadosBorrados})
-        console.log("Los contactos que siguen almacenados son");
-        console.log(resultados);
-        await Asyncstorage.setItem("UsuariosBorrados", jsonUsers)
+    // async borramosTarjeta(idTarjeta){
+    //   try{
+    //     let resultadoBorrado = this.state.importedUsers.filter((item)=>{
+    //       return item.login.uuid == idTarjeta;
+    //     })
+    //      this.state.resultadosBorrados = this.state.resultadosBorrados.concat(resultadoBorrado)
+    //      console.log("Los contactos que se borraron fueron:"); 
+    //      console.log(this.state.resultadosBorrados);
+    //     let resultados = this.state.importedUsers.filter((item)=>{
+    //       return item.login.uuid !== idTarjeta;
+    //     })
+    //     this.setState({importedUsers:resultados})
+    //     this.setState({deletedUsers: this.state.resultadosBorrados})
+    //     console.log("Los contactos que siguen almacenados son");
+    //     console.log(resultados);
+    //     await Asyncstorage.setItem("UsuariosBorrados", jsonUsers)
       
-      }
-      catch(e){}
-    }
+    //   }
+    //   catch(e){}
+    // }
 
-
+async borramosTarjeta (idTarjeta){
+  try{
+    let resultadoBorrado = this.state.importedUsers.filter((item)=>{
+    return item.login.uuid == idTarjeta
+  })
+  this.state.resultadosBorrados = this.state.resultadosBorrados.concat(resultadoBorrado)
+  console.log("Los contactos que se borraron fueron:"); 
+  console.log(this.state.resultadosBorrados);
+  let resultados = this.state.importedUsers.filter((item)=>{
+  return item.login.uuid !== idTarjeta;
+  })
+  this.setState({importedUsers:resultados})
+  const jsonValue = JSON.stringify(this.state.resultadosBorrados)
+  if(jsonValue!== null){
+    this.setState({deletedUsers: jsonValue})
+    await Asyncstorage.setItem("UsuariosBorrados", jsonValue)
+  console.log("Los contactos que siguen almacenados son");
+  console.log(resultados);
+  }else{
+    console.log("No se guardo ningun contacto");
+  }
+ 
+  }catch (e){
+    console.log(e);
+  }
+}
 
 
 
